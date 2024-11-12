@@ -494,16 +494,17 @@ var stubAjaxLoad = function(content) {
 			});
 
 			it('works correctly with filters [#235]', function() {
-				var ok = false;
+				var ok = false
 				var fn = function(evt) {
-					ok = !evt.isDefaultPrevented();
-				};
-				$(document).on('click', fn);
-				$('#bug-235 .unrelated').click();
-				$(document).off('click', fn);
-				expect(ok).to.eql(true);
-			});
+					ok = !evt.isDefaultPrevented()
+				}
 
-		});
-	});
-}(jQuery));
+				$(document).on('click', fn)
+				$('#bug-235 .unrelated').click()
+				$(document).off('click', fn)
+				expect(ok).to.eql(true)
+			})
+
+		})
+	})
+}(jQuery))
