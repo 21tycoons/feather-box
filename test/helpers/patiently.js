@@ -1,4 +1,4 @@
-if(!this.chai) { chai = require("chai"); }
+if (!this.chai) { chai = require("chai") }
 
 var patiently = function(done, blockOrBlocks, maxDelay) {
   var self = this,
