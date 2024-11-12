@@ -9,7 +9,7 @@ var stubAjaxLoad = function(content) {
       $this.html(content)
       callback(null, "success")
     })
-    return this;
+    return this
   }
 }
 
