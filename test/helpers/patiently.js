@@ -6,28 +6,28 @@ var patiently = function(done, blockOrBlocks, maxDelay) {
     block = blocks.shift(),
     delay = 200,
     maxFailures = (maxDelay || 1000) / delay,
-    check = function(){
+    check = function() {
       try { block.call(self) }
       catch (exc) {
         if (exc instanceof chai.AssertionError &&
             --maxFailures >= 0) {
-          setTimeout(check, delay);
-          return ;
+          setTimeout(check, delay)
+          return
         }
-        throw(exc);
+        throw(exc)
       }
-      block = blocks.shift();
+      block = blocks.shift()
       if (block) {
-        check();
+        check()
       } else {
-        done();
+        done()
       }
-    };
-   check();
+    }
+   check()
 }
 
 if (typeof exports == "object") {
-  module.exports = patiently;
+  module.exports = patiently
 } else {
-  this["patiently"] = patiently;
-};
+  this["patiently"] = patiently
+}
