@@ -14,29 +14,31 @@ var stubAjaxLoad = function(content) {
 }
 
 (function($) {
-	var $htmlFixtures = null;
-	var resetFixtures = function(){
-		if (!$htmlFixtures) $htmlFixtures = $('#fixtures').detach();
+	var $htmlFixtures = null
+	var resetFixtures = function() {
+		if (!$htmlFixtures) $htmlFixtures = $('#fixtures').detach()
 		$('body >:not(#mocha)').remove()
-		$('body').append($htmlFixtures.clone(true));
-	};
-	var triggerKeyCode = function(keyCode) {
-		$(window).trigger($.Event("keyup", { keyCode: keyCode }));
-	};
-	var triggerEscape = function(){
-		triggerKeyCode(27);
-	};
+		$('body').append($htmlFixtures.clone(true))
+	}
 
-	$.fx.off = true;
-	$.fn.toJSON = function() { return 'jQuery: ' + this.selector + ' (' + this.length + ')' };
+	var triggerKeyCode = function(keyCode) {
+		$(window).trigger($.Event("keyup", { keyCode: keyCode }))
+	}
+
+	var triggerEscape = function() {
+		triggerKeyCode(27)
+	}
+
+	$.fx.off = true
+	$.fn.toJSON = function() { return 'jQuery: ' + this.selector + ' (' + this.length + ')' }
 
 	describe('Featherlight', function() {
-		beforeEach(resetFixtures);
-		after(resetFixtures);
+		beforeEach(resetFixtures)
+		after(resetFixtures)
 
 		it ('works on items with data-featherlight by default', function(done) {
-			expect($('img')).to.not.be.visible;
-			$('#auto-bound').click();
+			expect($('img')).to.not.be.visible
+			$('#auto-bound').click()
 			patiently(done, [
 				function() {
 					expect($('.featherlight img')).to.be.visible;
