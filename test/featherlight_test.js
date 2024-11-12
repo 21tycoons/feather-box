@@ -1,16 +1,17 @@
-var expect = chai.expect;
+var expect = chai.expect
+
 var stubAjaxLoad = function(content) {
-  var oldLoad = $.fn.load;
+  var oldLoad = $.fn.load
   $.fn.load = function(url, callback) {
-    var $this = this;
-    $.fn.load = oldLoad;
+    var $this = this
+    $.fn.load = oldLoad
     window.setTimeout(function() {
-      $this.html(content);
-      callback(null, "success");
-    });
+      $this.html(content)
+      callback(null, "success")
+    })
     return this;
-  };
-};
+  }
+}
 
 (function($) {
 	var $htmlFixtures = null;
