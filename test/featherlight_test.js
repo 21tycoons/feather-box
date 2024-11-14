@@ -2,7 +2,9 @@ var expect = chai.expect
 
 var stubAjaxLoad = function(content) {
   var oldLoad = $.fn.load
+
   $.fn.load = function(url, callback) {
+
     var $this = this
     $.fn.load = oldLoad
 
