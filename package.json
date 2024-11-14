@@ -61,7 +61,7 @@
 	"name": "featherlight",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/noelboss/featherlight.git"
+		"url": "https://github.com/21tycoons/featherlight.git"
 	},
 	"scripts": {
 		"build": "grunt",
