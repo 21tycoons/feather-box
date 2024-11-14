@@ -1,4 +1,4 @@
-FeatherBox - ultra slim jQuery lightbox [![Build Status](https://travis-ci.org/noelboss/featherlight.svg?branch=master)](https://travis-ci.org/noelboss/featherlight)
+FeatherBox - ultra slim jQuery lightbox
 ------------------------
 
 **FeatherBox is a very lightweight jQuery lightbox plugin. For more information and demos, visit the [official website](https://www.noevu.ch/featherlight-js-the-ultra-slim-lightbox/).**
