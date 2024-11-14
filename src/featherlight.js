@@ -62,15 +62,16 @@
 	   CoffeeScript's `super`.
 	*/
 
-	function Featherlight($content, config) {
-		if (this instanceof Featherlight) {  /* called with new */
-			this.id = Featherlight.id++
+	function FeatherLight($content, config) {
+		if (this instanceof FeatherLight) {  /* called with new */
+			this.id = FeatherLight.id++
 			this.setup($content, config)
-			this.chainCallbacks(Featherlight._callbackChain)
+			this.chainCallbacks(FeatherLight._callbackChain)
 		} else {
-			var fl = new Featherlight($content, config)
-			fl.open()
-			return fl
+			var featherLight = new FeatherLight($content, config)
+			featherLight.open()
+
+			return featherLight
 		}
 	}
 
