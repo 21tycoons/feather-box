@@ -32,53 +32,55 @@ factory(jQuery);
 "use strict";
 
 if('undefined' === typeof $) {
-if('console' in window){ window.console.info('Too much lightness, Featherlight needs jQuery.'); }
+if('console' in window){ window.console.info('Too much lightness, FeatherBox needs jQuery.'); }
 return;
 }
 if($.fn.jquery.match(/-ajax/)) {
-if('console' in window){ window.console.info('Featherlight needs regular jQuery, not the slim version.'); }
+if('console' in window){ window.console.info('FeatherBox needs regular jQuery, not the slim version.'); }
 return;
 }
 
-/* FeatherLight is exported as $.featherlight.
+/* FeatherBox is exported as $.featherlight.
 It is a function used to open a featherlight lightbox.
 
 [tech]
-Featherlight uses prototype inheritance.
+FeatherBox uses prototype inheritance.
 Each opened lightbox will have a corresponding object.
 That object may have some attributes that override the
 prototype's.
-Extensions created with Featherlight.extend will have their
-own prototype that inherits from Featherlight's prototype,
+Extensions created with FeatherBox.extend will have their
+own prototype that inherits from FeatherBox's prototype,
 thus attributes can be overriden either at the object level,
 or at the extension level.
 To create callbacks that chain themselves instead of overriding,
 use chainCallbacks.
 For those familiar with CoffeeScript, this correspond to
-Featherlight being a class and the Gallery being a class
-extending Featherlight.
+FeatherBox being a class and the Gallery being a class
+extending FeatherBox.
 The chainCallbacks is used since we don't have access to
 CoffeeScript's `super`.
 */
 
 function FeatherBox($content, config) {
-  if (this instanceof FeatherLight) {  /* called with new */
-    this.id = FeatherLight.id++
+  if (this instanceof FeatherBox) {  /* called with new */
+    this.id = FeatherBox.id++
     this.setup($content, config)
-    this.chainCallbacks(FeatherLight._callbackChain)
+    this.chainCallbacks(FeatherBox._callbackChain)
   } else {
-    var featherLight = new FeatherLight($content, config)
-    featherLight.open()
+    var featherBox = new FeatherBox($content, config)
+    featherBox.open()
 
-    return featherLight
+    return featherBox
   }
 }
 
-var opened = [],
-pruneOpened = function(remove) {
-opened = $.grep(opened, function(featherLight) {
-  return featherLight !== remove &&
-    featherLight.$instance.closest('body').length > 0
+
+var opened = []
+
+var pruneOpened = function(remove) {
+  opened = $.grep(opened, function(featherBox) {
+  return featherBox !== remove &&
+    featherBox.$instance.closest('body').length > 0
   })
 
   return opened
@@ -140,7 +142,7 @@ return attrs
 var eventMap = { keyup: 'onKeyUp', resize: 'onResize' }
 
 var globalEventHandler = function(event) {
-$.each(Featherlight.opened().reverse(), function() {
+$.each(FeatherBox.opened().reverse(), function() {
 if (!event.isDefaultPrevented()) {
 if (false === this[eventMap[event.type]](event)) {
 event.preventDefault(); event.stopPropagation(); return false;
@@ -150,15 +152,15 @@ event.preventDefault(); event.stopPropagation(); return false;
 }
 
 var toggleGlobalEvents = function(set) {
-if (set !== Featherlight._globalHandlerInstalled) {
-Featherlight._globalHandlerInstalled = set;
-var events = $.map(eventMap, function(_, name) { return name+'.'+Featherlight.prototype.namespace; } ).join(' ');
+if (set !== FeatherBox._globalHandlerInstalled) {
+FeatherBox._globalHandlerInstalled = set;
+var events = $.map(eventMap, function(_, name) { return name+'.'+FeatherBox.prototype.namespace; } ).join(' ');
 $(window)[set ? 'on' : 'off'](events, globalEventHandler)
 }
 }
 
-Featherlight.prototype = {
-constructor: Featherlight,
+FeatherBox.prototype = {
+constructor: FeatherBox,
 /*** defaults ***/
 /* extend featherlight with defaults and methods */
 namespace:      'featherlight',        /* Name of the events and css class prefix */
@@ -280,7 +282,7 @@ return !data
 })
 
 if (!data) {
-if('console' in window){ window.console.error('Featherlight: no content filter found ' + (target ? ' for "' + target + '"' : ' (no target specified)')); }
+if('console' in window){ window.console.error('FeatherBox: no content filter found ' + (target ? ' for "' + target + '"' : ' (no target specified)')); }
 return false;
 }
 }
@@ -404,10 +406,10 @@ this[name] = $.proxy(chain[name], this, $.proxy(this[name], this));
 }
 };
 
-$.extend(Featherlight, {
+$.extend(FeatherBox, {
 id: 0,                                    /* Used to id single featherlight instances */
 autoBind:       '[data-featherlight]',    /* Will automatically bind elements matching this selector. Clear or set before onReady */
-defaults:       Featherlight.prototype,   /* You can access and override all defaults using $.featherlight.defaults, which is just a synonym for $.featherlight.prototype */
+defaults:       FeatherBox.prototype,   /* You can access and override all defaults using $.featherlight.defaults, which is just a synonym for $.featherlight.prototype */
 /* Contains the logic to determine content */
 contentFilters: {
 jquery: {
@@ -500,13 +502,13 @@ config[name] = val;
 return config;
 },
 
-/* Used to create a Featherlight extension
+/* Used to create a FeatherBox extension
 [Warning: guru-level]
 Creates the extension's prototype that in turn
-inherits Featherlight's prototype.
+inherits FeatherBox's prototype.
 Could be used to extend an extension too...
 This is pretty high level wizardy, it comes pretty much straight
-from CoffeeScript and won't teach you anything about Featherlight
+from CoffeeScript and won't teach you anything about FeatherBox
 as it's not really specific to this library.
 My suggestion: move along and keep your sanity.
 */
@@ -577,7 +579,7 @@ if(cur) { return cur.close(event); }
 },
 
 /* Does the auto binding on startup.
-Meant only to be used by Featherlight and its extensions
+Meant only to be used by FeatherBox and its extensions
 */
 _onReady: function() {
 var Klass = this;
@@ -608,8 +610,8 @@ data.handler(evt);
 }
 },
 
-/* Featherlight uses the onKeyUp callback to intercept the escape key.
-Private to Featherlight.
+/* FeatherBox uses the onKeyUp callback to intercept the escape key.
+Private to FeatherBox.
 */
 _callbackChain: {
 onKeyUp: function(_super, event){
@@ -659,7 +661,7 @@ $(elem).attr('tabindex', self._previousWithTabIndices[i]);
 });
 this._previouslyActive.focus();
 // Restore scroll
-if(Featherlight.opened().length === 0) {
+if(FeatherBox.opened().length === 0) {
 $(document.documentElement).removeClass('with-featherlight');
 }
 return r;
@@ -679,14 +681,14 @@ return r;
 }
 });
 
-$.featherlight = Featherlight;
+$.featherlight = FeatherBox;
 
 /* bind jQuery elements to trigger featherlight */
 $.fn.featherlight = function($content, config) {
-Featherlight.attach(this, $content, config);
+FeatherBox.attach(this, $content, config);
 return this;
 };
 
 /* bind featherlight on ready if config autoBind is set */
-$(document).ready(function(){ Featherlight._onReady(); });
+$(document).ready(function(){ FeatherBox._onReady(); });
 });
