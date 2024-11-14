@@ -85,159 +85,162 @@ var stubAjaxLoad = function(content) {
 				}
 			}
 
-			$.featherlight({advancedExample: 'dummy'})
+			$.featherlight({
+				advancedExample: 'dummy'
+			})
+
 			expect($('.featherlight > p').length).to.equal(1)
 		})
 
 		describe('jQuery#featherlight', function() {
-
 			it('is chainable', function() {
 				// Not a bad test to run on collection methods.
 				var $all_links = $('a')
-				expect($all_links.featherlight()).to.equal($all_links);
-			});
+				expect($all_links.featherlight()).to.equal($all_links)
+			})
 
-			it("won't open a dialog if the event is already prevented", function(){
-				$('#plain-photo-link').on('click', function(event) { event.preventDefault(); })
-				.featherlight().click();
-				expect($.featherlight.current()).to.be.null;
-			});
-		});
+			it("won't open a dialog if the event is already prevented", function() {
+				$('#plain-photo-link').on('click', function(event) { event.preventDefault() }).featherlight().click()
+				expect($.featherlight.current()).to.be.null
+			})
+		})
 
 		describe('jQuery.featherlight', function() {
-
 			it('opens a dialog box', function() {
-				$.featherlight('<p class="testing">This is a test<p>');
-				expect($('.featherlight p.testing')).to.be.visible;
-			});
-
-		});
+				$.featherlight('<p class="testing">This is a test<p>')
+				expect($('.featherlight p.testing')).to.be.visible
+			})
+		})
 
 		describe('jQuery.featherlight#open', function() {
 			it('returns a promise', function(done) {
-				var fl = new $.featherlight('<p class="testing">This is a test<p>');
-				expect($.featherlight.current()).to.be.null;
-				var evt = $.Event('dummy');
-				evt.preventDefault();
-				expect(fl.open(evt).state()).to.equal('rejected');
-				expect($.featherlight.current()).to.be.null;
-				fl.open().then(function(){ done(); });
-			});
-		});
+				var fl = new $.featherlight('<p class="testing">This is a test<p>')
+				expect($.featherlight.current()).to.be.null
+				var evt = $.Event('dummy')
+				evt.preventDefault()
+				expect(fl.open(evt).state()).to.equal('rejected')
+				expect($.featherlight.current()).to.be.null
+				fl.open().then(function(){ done() })
+			})
+		})
 
 		describe('jQuery.featherlight.current', function() {
 			it('returns null if no dialogbox is currently opened', function() {
-				expect($.featherlight.current()).to.be.null;
+				expect($.featherlight.current()).to.be.null
 				/* even if opened and then closed */
-				$.featherlight('<p class="testing">This is a test<p>');
-				$('.featherlight').click();
-				expect($.featherlight.current()).to.be.null;
+				$.featherlight('<p class="testing">This is a test<p>')
+				$('.featherlight').click()
+				expect($.featherlight.current()).to.be.null
 				/* even if savagely removed */
-				$.featherlight('<p class="testing">This is a test<p>');
-				$('.featherlight').remove();
-				expect($.featherlight.current()).to.be.null;
-			});
+				$.featherlight('<p class="testing">This is a test<p>')
+				$('.featherlight').remove()
+				expect($.featherlight.current()).to.be.null
+			})
 
 			it('returns the featherlight object of the last currently opened dialog', function() {
 				var first = $.featherlight('<p>First<p>');
 				expect($.featherlight.current()).to.equal(first);
-				var second = $.featherlight('<p>Inner<p>', {namespace: 'different_namespace'});
-				expect($.featherlight.current()).to.equal(second);
-				$('.different_namespace').click();
-				expect($.featherlight.current()).to.equal(first);
-			});
+				var second = $.featherlight('<p>Inner<p>', {
+					namespace: 'different_namespace'
+				})
 
-		});
+				expect($.featherlight.current()).to.equal(second)
+				$('.different_namespace').click()
+				expect($.featherlight.current()).to.equal(first)
+			})
+		})
 
 		describe('jQuery.featherlight.opened', function() {
 			it('returns [] ]if no dialogbox is currently opened', function() {
-				expect($.featherlight.opened()).to.eql([]);
+				expect($.featherlight.opened()).to.eql([])
 				/* even if opened and then closed */
-				$.featherlight('<p class="testing">This is a test<p>');
-				$('.featherlight').click();
-				expect($.featherlight.opened()).to.eql([]);
+				$.featherlight('<p class="testing">This is a test<p>')
+				$('.featherlight').click()
+				expect($.featherlight.opened()).to.eql([])
 				/* even if savagely removed */
-				$.featherlight('<p class="testing">This is a test<p>');
-				$('.featherlight').remove();
-				expect($.featherlight.opened()).to.eql([]);
-			});
+				$.featherlight('<p class="testing">This is a test<p>')
+				$('.featherlight').remove()
+				expect($.featherlight.opened()).to.eql([])
+			})
 
 			it('returns the featherlight objects of the currently opened dialog', function() {
-				var first = $.featherlight('<p>First<p>');
-				expect($.featherlight.opened()).to.eql([first]);
-				var second = $.featherlight('<p>Inner<p>', {namespace: 'different_namespace'});
-				expect($.featherlight.opened()).to.eql([first, second]);
-				$('.different_namespace').click();
-				expect($.featherlight.opened()).to.eql([first]);
-			});
-		});
+				var first = $.featherlight('<p>First<p>')
+				expect($.featherlight.opened()).to.eql([first])
+				var second = $.featherlight('<p>Inner<p>', { namespace: 'different_namespace' })
+				expect($.featherlight.opened()).to.eql([first, second])
+				$('.different_namespace').click()
+				expect($.featherlight.opened()).to.eql([first])
+			})
+		})
 
 		describe('jQuery.featherlight.close', function() {
 			it('closes the currently opened window, if any', function() {
-				$.featherlight('<p class="testing">This is a test<p>');
-				$.featherlight.close();
-				expect($.featherlight.current()).to.be.null;
-				$.featherlight.close(); /* should not create error */
-			});
-		});
+				$.featherlight('<p class="testing">This is a test<p>')
+				$.featherlight.close()
+				expect($.featherlight.current()).to.be.null
+				$.featherlight.close() /* should not create error */
+			})
+		})
 
 		describe('jQuery.featherlight.close', function() {
 			it('returns a promise', function(done) {
-				$.featherlight('<p class="testing">This is a test<p>');
-				$.featherlight.close().then(function(){ done() });
-			});
-		});
+				$.featherlight('<p class="testing">This is a test<p>')
+				$.featherlight.close().then(function(){ done() })
+			})
+		})
 
 		describe('image content filter', function() {
 			it('stores the natural width & height', function(done) {
 				$('#plain-photo-link').featherlight({
 					afterOpen: function() {
 						expect(this.$content.naturalWidth).to.equal(200);
-						done();
+						done()
 					}
-				}).click();
-			});
-		});
+				}).click()
+			})
+		})
 
 		describe('configuration', function() {
 			it('can be set using data-featherlight-*', function() {
-				$('#data-attr-test a').featherlight().click();
+				$('#data-attr-test a').featherlight().click()
+
 				expect($.featherlight.current()).to.have.properties({
 					variant: 'test',
 					closeOnEsc: false,
 					closeSpeed: 42,
-				});
+				})
+
 				expect($.featherlight.current().$instance.find('b')).to.have.text('Added in callback');
-			});
+			})
 
 			it('can be set using data-featherlight-* on filtered element too', function() {
-				$('#data-attr-filter-test a:first').click();
-				expect($.featherlight.current()).to.have.property('variant').equal('wrapper');
-				$('#data-attr-filter-test a:last').click();
-				expect($.featherlight.current()).to.have.property('variant').equal('inner');
+				$('#data-attr-filter-test a:first').click()
+				expect($.featherlight.current()).to.have.property('variant').equal('wrapper')
+				$('#data-attr-filter-test a:last').click()
+				expect($.featherlight.current()).to.have.property('variant').equal('inner')
 				$('<a data-featherlight-variant="dynamic" href=".some-content">z</a>')
 					.appendTo($('#data-attr-filter-test')).click()
-				expect($.featherlight.current()).to.have.property('variant').equal('dynamic');
-			});
+				expect($.featherlight.current()).to.have.property('variant').equal('dynamic')
+			})
 
 			it('can specify to close or not on escape key', function() {
 				var first = $.featherlight('<p/>'),
 					second = $.featherlight('<p/>'),
-					third = $.featherlight('<p/>', {closeOnEsc: false}),
-					last = $.featherlight('<p/>', {closeOnEsc: true});
-				expect($.featherlight._globalHandlerInstalled).to.be.true;
-				triggerEscape();
-				expect($.featherlight.current()).to.equal(third);
-				triggerEscape();
-				expect($('.featherlight')).with.length(3);
-				$('.featherlight:last').click();
-				expect($.featherlight.current()).to.equal(second);
-				triggerEscape();
-				expect($.featherlight.current()).to.equal(first);
-				expect($.featherlight._globalHandlerInstalled).to.be.true;
-				$.featherlight.current().close();
-				expect($.featherlight._globalHandlerInstalled).to.be.false;
-			});
+					third = $.featherlight('<p/>', { closeOnEsc: false }),
+					last = $.featherlight('<p/>', { closeOnEsc: true })
+				expect($.featherlight._globalHandlerInstalled).to.be.true
+				triggerEscape()
+				expect($.featherlight.current()).to.equal(third)
+				triggerEscape()
+				expect($('.featherlight')).with.length(3)
+				$('.featherlight:last').click()
+				expect($.featherlight.current()).to.equal(second)
+				triggerEscape()
+				expect($.featherlight.current()).to.equal(first)
+				expect($.featherlight._globalHandlerInstalled).to.be.true
+				$.featherlight.current().close()
+				expect($.featherlight._globalHandlerInstalled).to.be.false
+			})
 
 			it('can specify to a close icon', function() {
 				var fl = $.featherlight('<p/>', {closeIcon: '<div class="test">X</div>'});
