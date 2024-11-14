@@ -14,9 +14,9 @@
 
 
 
-## [» Download Current Release 2.0.1]()
+## 🚧 Do not use just yet
 
-Here you'll find a [list of all the changes]().
+Here's where you'll find a [list of all the changes]().
 
 
 # Installation
