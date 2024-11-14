@@ -41,14 +41,17 @@ var stubAjaxLoad = function(content) {
 			$('#auto-bound').click()
 			patiently(done, [
 				function() {
-					expect($('.featherlight img')).to.be.visible;
-					expect($('.featherlight img')).to.have.attr('src').equal('fixtures/photo.jpeg');
-					$('.featherlight').click();
+
+					expect($('.featherlight img')).to.be.visible
+					expect($('.featherlight img')).to.have.attr('src').equal('fixtures/photo.jpeg')
+					$('.featherlight').click()
+
 				}, function() {
-					expect($('img')).to.not.be.visible;
+
+					expect($('img')).to.not.be.visible
 				}
-			]);
-		});
+			])
+		})
 
 		it ('works on items with data-featherlight by default', function(done) {
 			$('body').append('<div id="auto-bound-2" data-featherlight="fixtures/photo.jpeg">Dynamic</div>')
