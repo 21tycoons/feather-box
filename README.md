@@ -1,4 +1,4 @@
-🪶 FeatherBox - ultra thin jQuery lightbox 
+🪶 FeatherBox - super thin jQuery lightbox 
 ------------------------
 
 **FeatherBox is a very lightweight jQuery lightbox plugin.**
