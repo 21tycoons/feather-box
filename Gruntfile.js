@@ -115,19 +115,19 @@ from: '="featherlight.gallery.',
 to: '="release/featherlight.gallery.min.'
 },
 {
-from: '="featherlight.js',
-to: '="release/featherlight.min.js'
+from: '="featherbox.js',
+to: '="release/featherbox.min.js'
 },
 {
-from: '="featherlight.css',
-to: '="release/featherlight.min.css'
+from: '="featherbox.css',
+to: '="release/featherbox.min.css'
 },
 {
 from: '="../assets',
 to: '="assets'
 },
 {
-from: 'master.zip',
+from: 'main.zip',
 to: '<%= pkg.version %>.zip'
 }
 ]
@@ -137,8 +137,8 @@ src: ['./CHANGELOG.md'],
 overwrite: true,
 replacements: [
 {
-from: 'Master\n-----------------------------------',
-to: 'Master\n-----------------------------------\n\n\n<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n-----------------------------------'
+from: 'Main\n-----------------------------------',
+to: 'Main\n-----------------------------------\n\n\n<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n-----------------------------------'
 }
 ]
 },
@@ -162,7 +162,7 @@ push: false
 },
 mocha: {
 test: {
-src: ['test/featherlight*.html'],
+src: ['test/featherbox*.html'],
 },
 options: {
 run: true,
