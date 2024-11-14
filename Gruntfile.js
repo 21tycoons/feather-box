@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
   // Project configuration
-  var banner = '/**\n * Featherbox - super thin jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
+  var banner = '/**\n * Featherbox - super thin jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT License.\n**/';
   var gallery = '/**\n * Featherlight Gallery – an extension for the ultra slim jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
   grunt.initConfig({
 pkg: grunt.file.readJSON('package.json'),
@@ -9,15 +9,15 @@ featherlight: {
 options: {
 banner: banner+'\n'
 },
-src: 'src/<%= pkg.name %>.js',
-dest: 'release/<%= pkg.name %>.min.js'
+src: 'src/feather-box.js',
+dest: 'release/feather-box.min.js'
 },
 gallery: {
 options: {
 banner: gallery
 },
-src: 'src/<%= pkg.name %>.gallery.js',
-dest: 'release/<%= pkg.name %>.gallery.min.js'
+src: 'src/feather-box.gallery.js',
+dest: 'release/feather-box.gallery.min.js'
 }
 },
 jshint: {
@@ -44,8 +44,8 @@ featherlight: {
 options: {
 banner: banner
 },
-src: 'src/<%= pkg.name %>.css',
-dest: 'release/<%= pkg.name %>.min.css'
+src: 'src/feather-box.css',
+dest: 'release/feather-box.min.css'
 },
 gallery: {
 options: {
@@ -59,7 +59,7 @@ jquerymanifest: {
 options: {
 source: grunt.file.readJSON('package.json'),
 overrides: {
-"name": "<%= pkg.name %>",
+"name": "feather-box",
 "version": "<%= pkg.version %>",
 "title": "<%= pkg.title %>",
 "description": "<%= pkg.description %>",
@@ -93,8 +93,8 @@ from: /archive\/[0-9]+[.]{1}[0-9]+[.]{1}[0-9]+/g,
 to: 'archive/<%= pkg.version %>'
 },
 {
-from: /noelboss\/featherlight\/[0-9]+[.]{1}[0-9]+[.]{1}[0-9]+/g,
-to: 'noelboss/featherlight/<%= pkg.version %>'
+from: /21tycoons\/featherbox\/[0-9]+[.]{1}[0-9]+[.]{1}[0-9]+/g,
+to: '21tycoons/featherbox/<%= pkg.version %>'
 },
 {
 from: /"version": "[0-9]+[.]{1}[0-9]+[.]{1}[0-9]+"/g,
