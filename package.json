@@ -1,8 +1,9 @@
 {
-	"title": "Featherlight \u2013 ultra slim jQuery lightbox",
+	"title": "FeatherBox \u2013 ultra slim jQuery lightbox",
 	"version": "2.0.1",
 	"author": {
-		"name": ["No\u00ebl Raoul Bossart", "Liroy Leshed", "21tycoons LLC"],
+		"name": "21tycoons LLC",
+		"contributors": [{ "Liroy Leshed", "No\u00ebl Raoul Bossart" }]
 		"url": ""
 	},
 	"bugs": "",
