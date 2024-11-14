@@ -9,15 +9,15 @@ featherlight: {
 options: {
 banner: banner+'\n'
 },
-src: 'src/feather-box.js',
-dest: 'release/feather-box.min.js'
+src: './src/feather-box.js',
+dest: './release/feather-box.min.js'
 },
 gallery: {
 options: {
 banner: gallery
 },
-src: 'src/feather-box.gallery.js',
-dest: 'release/feather-box.gallery.min.js'
+src: './src/feather-box.gallery.js',
+dest: './release/feather-box.gallery.min.js'
 }
 },
 jshint: {
@@ -34,7 +34,7 @@ Hammer: true,
 el: true
 },
 },
-uses_defaults: ['src/**/*.js']
+uses_defaults: ['src/*.js']
 },
 cssmin: {
 options: {
