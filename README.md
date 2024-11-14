@@ -37,8 +37,8 @@ Featherlight requires jQuery version 1.7.0 or higher (regular version, not the s
 
 By default, featherlight acts on all elements using the 'data-featherlight' attribute. An element with this attribute triggers the lightbox. The value of the attribute acts as selector for an element that's opened as lightbox.
 
-	<a href="#" data-featherlight="#mylightbox">Open element in lightbox</a>
-	<div id="mylightbox">This div will be opened in a lightbox</div>
+	<a href="#" data-featherbox="#lightbox">Open element in lightbox</a>
+	<div id="lightbox">This div will be opened in a lightbox</div>
 
 Featherlight is smart. 'data-featherlight' can also contain a link to an image, an ajax-url or even DOM code:
 
