@@ -286,41 +286,44 @@ var stubAjaxLoad = function(content) {
 					.append('<span class="yes"  href="filter Appended">Photo</span>')
 				$("#filter-test span").each(function(){ $(this).click() })
 				expect($('.featherlight')).with.length(2)
-				expect($('.featherlight:first .featherlight-content')).to.contain('filter Yes');
-				expect($('.featherlight:last  .featherlight-content')).to.contain('filter Appended');
-			});
+				expect($('.featherlight:first .featherlight-content')).to.contain('filter Yes')
+				expect($('.featherlight:last  .featherlight-content')).to.contain('filter Appended')
+			})
 
 			it('can specify explicit content', function() {
-				$.featherlight({text: 'A <div> & "quoted text"'});
-				expect($('.featherlight')).to.contain('A <div> & "quoted text"');
-			});
+				$.featherlight({text: 'A <div> & "quoted text"'})
+				expect($('.featherlight')).to.contain('A <div> & "quoted text"')
+			})
 
 			it('can specify ajax content', function(done) {
-				$.featherlight({ajax: 'featherlight.html .some-content'});
+				$.featherlight({ajax: 'featherlight.html .some-content'})
 				patiently(done, function() {
-					expect($('.featherlight')).to.contain('Hello');
-				});
-			});
+					expect($('.featherlight')).to.contain('Hello')
+				})
+			})
 
 			it('can recover from an ajax load error, like a 404', function(done) {
-				var modal = new $.featherlight({ajax: 'bad-url-not-found.html'});
-				var p = modal.open();
-				var callbackCalled = false;
+				var modal = new $.featherlight({ajax: 'bad-url-not-found.html'})
+				var p     = modal.open()
+				var callbackCalled = false
+
 				p.fail(function() {
-					callbackCalled = true;
+					callbackCalled = true
 				})
+
 				patiently(done, function() {
-					expect(callbackCalled).to.be.true;
-				});
-			});
+					expect(callbackCalled).to.be.true
+				})
+			})
 
 			it('ajax content can be text only', function(done) {
-				stubAjaxLoad('Hello <b>world</b>');
-				$.featherlight({ajax: 'stubbed'});
+				stubAjaxLoad('Hello <b>world</b>')
+				$.featherlight({ajax: 'stubbed'})
+
 				patiently(done, function() {
-					expect($('.featherlight')).to.contain('Hello');
-				});
-			});
+					expect($('.featherlight')).to.contain('Hello')
+				})
+			})
 
 			it('can specify an alternate close button selector', function() {
 				var fl = $.featherlight('<div>Test<div class="close-me">close</div></div>', {otherClose: '.close-me'});
