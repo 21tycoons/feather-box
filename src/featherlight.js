@@ -102,10 +102,24 @@
 
 	// NOTE: List of available [iframe attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
 	var iFrameAttributeSet = {
-		allow: 1, allowfullscreen: 1, frameborder: 1, height: 1, longdesc: 1, marginheight: 1, marginwidth: 1,
-		mozallowfullscreen: 1, name: 1, referrerpolicy: 1, sandbox: 1, scrolling: 1, src: 1, srcdoc: 1, style: 1,
-		webkitallowfullscreen: 1, width: 1
-	};
+		allow: 1,
+		allowfullscreen: 1,
+		frameborder: 1,
+		height: 1,
+		longdesc: 1,
+		marginheight: 1,
+		marginwidth: 1,
+		mozallowfullscreen: 1,
+		name: 1,
+		referrerpolicy: 1,
+		sandbox: 1,
+		scrolling: 1,
+		src: 1,
+		srcdoc: 1,
+		style: 1,
+		webkitallowfullscreen: 1,
+		width: 1
+	}
 
 	// Converts camelCased attributes to dasherized versions for given prefix:
 	//   parseAttrs({hello: 1, hellFrozeOver: 2}, 'hell') => {froze-over: 2}
