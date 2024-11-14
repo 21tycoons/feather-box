@@ -52,10 +52,10 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://raw.github.com/noelboss/featherlight/master/LICENSE"
+      "url": "https://raw.github.com/21tycoons/featherbox/master/LICENSE"
     }
   ],
-  "main": "release/featherlight.min.js",
+  "main": "release/featherbox.min.js",
   "name": "featherbox",
   "repository": {
   "type": "git",
