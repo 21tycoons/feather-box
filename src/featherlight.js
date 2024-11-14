@@ -63,35 +63,37 @@
 	*/
 
 	function Featherlight($content, config) {
-		if(this instanceof Featherlight) {  /* called with new */
-			this.id = Featherlight.id++;
-			this.setup($content, config);
-			this.chainCallbacks(Featherlight._callbackChain);
+		if (this instanceof Featherlight) {  /* called with new */
+			this.id = Featherlight.id++
+			this.setup($content, config)
+			this.chainCallbacks(Featherlight._callbackChain)
 		} else {
-			var fl = new Featherlight($content, config);
-			fl.open();
-			return fl;
+			var fl = new Featherlight($content, config)
+			fl.open()
+			return fl
 		}
 	}
 
 	var opened = [],
-		pruneOpened = function(remove) {
-			opened = $.grep(opened, function(fl) {
-				return fl !== remove && fl.$instance.closest('body').length > 0;
-			} );
-			return opened;
-		};
+	pruneOpened = function(remove) {
+	  opened = $.grep(opened, function(fl) {
+		  return fl !== remove && fl.$instance.closest('body').length > 0
+		})
+
+		return opened
+	}
 
 	// Removes keys of `set` from `obj` and returns the removed key/values.
 	function slice(obj, set) {
-		var r = {};
+		var r = {}
 		for (var key in obj) {
 			if (key in set) {
-				r[key] = obj[key];
-				delete obj[key];
+				r[key] = obj[key]
+				delete obj[key]
 			}
 		}
-		return r;
+
+		return r
 	}
 
 	// NOTE: List of available [iframe attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
