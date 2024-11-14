@@ -14,7 +14,7 @@ FeatherBox - ultra slim jQuery lightbox [![Build Status](https://travis-ci.org/n
 
 
 
-## [» Download Current Release 1.7.14](https://github.com/noelboss/featherlight/archive/v.1.7.14.zip)
+## [» Download Current Release 2.0.1]()
 
 Here you'll find a [list of all the changes](https://github.com/noelboss/featherlight/blob/master/CHANGELOG.md) and you can also download [old releases](https://github.com/noelboss/featherlight/releases) or [the master including all the latest  bling](https://github.com/noelboss/featherlight/archive/master.zip).
 
