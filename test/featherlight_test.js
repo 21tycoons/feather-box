@@ -5,10 +5,12 @@ var stubAjaxLoad = function(content) {
   $.fn.load = function(url, callback) {
     var $this = this
     $.fn.load = oldLoad
+
     window.setTimeout(function() {
       $this.html(content)
       callback(null, "success")
     })
+
     return this
   }
 }
