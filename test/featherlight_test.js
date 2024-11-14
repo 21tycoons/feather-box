@@ -40,6 +40,7 @@ var stubAjaxLoad = function(content) {
 			expect($('img')).to.not.be.visible
 			$('#auto-bound').click()
 			patiently(done, [
+
 				function() {
 
 					expect($('.featherlight img')).to.be.visible
