@@ -33,6 +33,7 @@ var stubAjaxLoad = function(content) {
 	$.fn.toJSON = function() { return 'jQuery: ' + this.selector + ' (' + this.length + ')' }
 
 	describe('Featherlight', function() {
+
 		beforeEach(resetFixtures)
 		after(resetFixtures)
 
