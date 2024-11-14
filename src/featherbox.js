@@ -1,8 +1,7 @@
 /**
 * Feather Box - super thin jQuery lightbox
 *
-* Copyright 2024
-* MIT Licensed.
+* Copyright 2024. MIT License.
 **/
 (function (factory) {
 if (typeof define === 'function' && define.amd) {
