@@ -193,7 +193,7 @@ var stubAjaxLoad = function(content) {
 			it('stores the natural width & height', function(done) {
 				$('#plain-photo-link').featherlight({
 					afterOpen: function() {
-						expect(this.$content.naturalWidth).to.equal(200);
+						expect(this.$content.naturalWidth).to.equal(200)
 						done()
 					}
 				}).click()
@@ -210,7 +210,7 @@ var stubAjaxLoad = function(content) {
 					closeSpeed: 42,
 				})
 
-				expect($.featherlight.current().$instance.find('b')).to.have.text('Added in callback');
+				expect($.featherlight.current().$instance.find('b')).to.have.text('Added in callback')
 			})
 
 			it('can be set using data-featherlight-* on filtered element too', function() {
@@ -250,17 +250,18 @@ var stubAjaxLoad = function(content) {
 			});
 
 			it('can specify a key handler', function() {
-				var lastKeyCode;
+				var lastKeyCode
 				$.featherlight('<p/>', {
 					onKeyUp: function(event) {
 						lastKeyCode = event.keyCode;
 					}
-				});
-				triggerKeyCode(25);
-				expect(lastKeyCode).to.equal(25);
-				triggerKeyCode(27);
-				expect(lastKeyCode).to./* still be */equal(25); /* since event is handled by FL */
-				expect($.featherlight.current()).to.be.null;
+				})
+
+				triggerKeyCode(25)
+				expect(lastKeyCode).to.equal(25)
+				triggerKeyCode(27)
+				expect(lastKeyCode).to./* still be */equal(25) /* since event is handled by FL */
+				expect($.featherlight.current()).to.be.null
 			});
 
 			it('can specify a resize handler', function() {
@@ -270,22 +271,22 @@ var stubAjaxLoad = function(content) {
 							onResize: function(event) { resizes.push(this.id); }
 						});
 					}
-				open();
-				open();
-				$(window).trigger('resize');
-				open();
-				$.featherlight.current().close();
-				$.featherlight.current().close();
-				$(window).trigger('resize');
-				resizes = $.map(resizes, function(id) { return id - $.featherlight.current().id });
-				expect(resizes).to.eql([0, 1, 1, 0, 2, 0]);
-			});
+				open()
+				open()
+				$(window).trigger('resize')
+				open()
+				$.featherlight.current().close()
+				$.featherlight.current().close()
+				$(window).trigger('resize')
+				resizes = $.map(resizes, function(id) { return id - $.featherlight.current().id })
+				expect(resizes).to.eql([0, 1, 1, 0, 2, 0])
+			})
 
 			it('can specify a filter for events', function() {
 				$("#filter-test .group").featherlight({filter: '.yes', type: 'text'})
-					.append('<span class="yes"  href="filter Appended">Photo</span>');
-				$("#filter-test span").each(function(){ $(this).click(); });
-				expect($('.featherlight')).with.length(2);
+					.append('<span class="yes"  href="filter Appended">Photo</span>')
+				$("#filter-test span").each(function(){ $(this).click() })
+				expect($('.featherlight')).with.length(2)
 				expect($('.featherlight:first .featherlight-content')).to.contain('filter Yes');
 				expect($('.featherlight:last  .featherlight-content')).to.contain('filter Appended');
 			});
@@ -485,30 +486,30 @@ var stubAjaxLoad = function(content) {
 				$.featherlight.close();
 				expect($(document.activeElement)).to.have.class('for-focus');
 				expect($('.for-focus').attr('tabindex')).to.be.undefined;
-			});
+			})
 
 			it('resets tabindex properly', function() {
-				$('.for-focus').attr('tabindex', 42);
-				$.featherlight({text: 'Hello'});
-				$.featherlight.close();
-				expect($('.for-focus')).to.have.attr('tabindex').equal('42');
-			});
+				$('.for-focus').attr('tabindex', 42)
+				$.featherlight({ text: 'Hello' })
+				$.featherlight.close()
+				expect($('.for-focus')).to.have.attr('tabindex').equal('42')
+			})
 
 			it('focussed on "autofocus" content, if any', function() {
-				$.featherlight({html: '<input><input autofocus class="ok">'});
-				expect($(document.activeElement)).to.have.class('ok');
-				$.featherlight.close();
-			});
+				$.featherlight({html: '<input><input autofocus class="ok">'})
+				expect($(document.activeElement)).to.have.class('ok')
+				$.featherlight.close()
+			})
 
 			it('sets the "with-featherlight" class correctly on html', function() {
-				expect($('html')).not.to.have.class('with-featherlight');
-				$.featherlight({html: 'hello'});
-				expect($('html')).to.have.class('with-featherlight');
-				$.featherlight({html: 'hello'});
-				$.featherlight.close();
-				$.featherlight.close();
-				expect($('html')).not.to.have.class('with-featherlight');
-			});
+				expect($('html')).not.to.have.class('with-featherlight')
+				$.featherlight({ html: 'hello' })
+				expect($('html')).to.have.class('with-featherlight')
+				$.featherlight({ html: 'hello' })
+				$.featherlight.close()
+				$.featherlight.close()
+				expect($('html')).not.to.have.class('with-featherlight')
+			})
 
 			it('works correctly with filters [#235]', function() {
 				var ok = false
