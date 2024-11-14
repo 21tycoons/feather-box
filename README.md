@@ -5,7 +5,7 @@
 
 * Simple yet flexible
 * Image, Ajax, iFrame and custom content support
-* [Gallery Extension](https://github.com/noelboss/featherlight/#featherlight-gallery)
+* [Gallery Extension]()
 * Minimal CSS
 * Name-spaced CSS and JavaScript
 * Responsive
@@ -16,7 +16,7 @@
 
 ## [» Download Current Release 2.0.1]()
 
-Here you'll find a [list of all the changes](https://github.com/noelboss/featherlight/blob/master/CHANGELOG.md) and you can also download [old releases](https://github.com/noelboss/featherlight/releases) or [the master including all the latest  bling](https://github.com/noelboss/featherlight/archive/master.zip).
+Here you'll find a [list of all the changes]().
 
 
 # Installation
