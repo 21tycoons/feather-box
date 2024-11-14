@@ -78,24 +78,26 @@
 
 	var opened = [],
 	pruneOpened = function(remove) {
-	  opened = $.grep(opened, function(fl) {
-		  return fl !== remove && fl.$instance.closest('body').length > 0
+	  opened = $.grep(opened, function(featherLight) {
+		  return featherLight !== remove &&
+				featherLight.$instance.closest('body').length > 0
 		})
 
 		return opened
 	}
 
 	// Removes keys of `set` from `obj` and returns the removed key/values.
-	function slice(obj, set) {
-		var r = {}
-		for (var key in obj) {
+	function slice(currentObject, set) {
+		var newObject = {}
+
+		for (var key in currentObject) {
 			if (key in set) {
-				r[key] = obj[key]
-				delete obj[key]
+				newObject[key] = currentObject[key]
+				delete currentObject[key]
 			}
 		}
 
-		return r
+		return newObject
 	}
 
 	// NOTE: List of available [iframe attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
