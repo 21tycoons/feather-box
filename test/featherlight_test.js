@@ -337,62 +337,59 @@ var stubAjaxLoad = function(content) {
 
 			it('can specify callbacks to track the progress of the dialog', function() {
 				var callbacks = ['beforeOpen', 'beforeContent', 'afterContent', 'afterOpen', 'beforeClose', 'afterClose'],
-					lastCallback = undefined,
-					options = {};
+				lastCallback = undefined,
+				options = {}
+
 				$.each(callbacks, function(i, cb){
 					options[cb] = function() {
-						expect(lastCallback).to.equal(callbacks[i-1]);
-						lastCallback = cb;
+						expect(lastCallback).to.equal(callbacks[i-1])
+						lastCallback = cb
 					}
-				});
-				$.featherlight($('<p>Hello</p>'), options);
-				expect(lastCallback).to.equal('afterOpen');
-				$.featherlight.current().close();
-				expect(lastCallback).to.equal('afterClose');
-			});
+				})
+
+				$.featherlight($('<p>Hello</p>'), options)
+				expect(lastCallback).to.equal('afterOpen')
+				$.featherlight.current().close()
+				expect(lastCallback).to.equal('afterClose')
+			})
 
 			it('can be interrupted via beforeOpen', function() {
-				$.featherlight({text: "Hello", beforeOpen: function() { return false; }});
-				expect($.featherlight.current()).to.be.null;
-				// Tricky case:
-				$.featherlight.defaults.beforeOpen = function() { return false; }
-				$('#auto-bound').click();
-				expect($.featherlight.current()).to.be.null;
-				$.featherlight.defaults.beforeOpen = $.noop;
-			});
+				$.featherlight({text: "Hello", beforeOpen: function() { return false }})
+				expect($.featherlight.current()).to.be.null
+				// Tricky case
+				$.featherlight.defaults.beforeOpen = function() { return false }
+				$('#auto-bound').click()
+				expect($.featherlight.current()).to.be.null
+				$.featherlight.defaults.beforeOpen = $.noop
+			})
 
 			it('provides event to beforeClose when close via closebox', function() {
-				$.featherlight({text: "Hello", beforeClose: function(evt) {
-					expect(evt).to.be.an('object');
-				}});
-				$('.featherlight-close').click();
-			});
+				$.featherlight({ text: "Hello", beforeClose: function(evt) { expect(evt).to.be.an('object') }})
+				$('.featherlight-close').click()
+			})
 
 			it('provides event to beforeClose & al when closed via escape', function() {
-				$.featherlight({text: "Hello", beforeClose: function(evt) {
-					expect(evt).to.be.an('object');
-				}});
-				triggerEscape();
-			});
+				$.featherlight({ text: "Hello", beforeClose: function(evt) { expect(evt).to.be.an('object') }})
+				triggerEscape()
+			})
 
 			it('passes event to beforeClose & al when closed via global function', function() {
-				$.featherlight({text: "Hello", beforeClose: function(evt) {
-					expect(evt).to.eql(42);
-				}});
-				$.featherlight.close(42);
-			});
+				$.featherlight({ text: "Hello", beforeClose: function(evt) { expect(evt).to.eql(42) }})
+				$.featherlight.close(42)
+			})
 
 			it('can specify a loading text', function(done) {
-				stubAjaxLoad('<b>Hi</b>');
-				$.featherlight({ajax: 'stubbed', loading: "Spinner!"});
-				expect($('.featherlight')).to.contain('Spinner!');
-				expect($('.featherlight')).to.have.class('featherlight-loading');
+				stubAjaxLoad('<b>Hi</b>')
+				$.featherlight({ajax: 'stubbed', loading: "Spinner!"})
+				expect($('.featherlight')).to.contain('Spinner!')
+				expect($('.featherlight')).to.have.class('featherlight-loading')
+
 				patiently(done, function() {
-					expect($('.featherlight')).to.contain('Hi');
-					expect($('.featherlight')).not.to.contain('Spinner!');
-					expect($('.featherlight')).not.to.have.class('featherlight-loading');
-				});
-			});
+					expect($('.featherlight')).to.contain('Hi')
+					expect($('.featherlight')).not.to.contain('Spinner!')
+					expect($('.featherlight')).not.to.have.class('featherlight-loading')
+				})
+			})
 
 			it('can specify a different namespace', function() {
 				$('#namespace-test a').featherlight({namespace: 'custom-namespace'}).click();
