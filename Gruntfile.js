@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
-// Project configuration
-var banner = '/**\n * Featherbox - super thin jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
-var gallery = '/**\n * Featherlight Gallery – an extension for the ultra slim jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
-grunt.initConfig({
+  // Project configuration
+  var banner = '/**\n * Featherbox - super thin jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
+  var gallery = '/**\n * Featherlight Gallery – an extension for the ultra slim jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
+  grunt.initConfig({
 pkg: grunt.file.readJSON('package.json'),
 uglify: {
 featherlight: {
@@ -73,7 +73,7 @@ overrides: {
 },
 replace: {
 src: {
-src: ['./README.md','./src/*.*','bower.json'],
+src: ['./README.md','./src/*.*'],
 overwrite: true,
 replacements: [
 {
@@ -112,7 +112,7 @@ dest: './',
 replacements: [
 {
 from: '="featherlight.gallery.',
-to: '="release/featherlight.gallery.min.'
+to: '="release/featherbox.gallery.min.'
 },
 {
 from: '="featherbox.js',
@@ -170,22 +170,22 @@ run: true,
 },
 });
 
-// Load the plugin that provides the "uglify" task.
-// grunt.loadNpmTasks('grunt-contrib-jshint')
-grunt.loadNpmTasks('grunt-text-replace')
-grunt.loadNpmTasks('grunt-contrib-uglify')
-grunt.loadNpmTasks('grunt-contrib-cssmin')
-grunt.loadNpmTasks('grunt-jquerymanifest')
-grunt.loadNpmTasks('grunt-mocha')
-grunt.loadNpmTasks('grunt-bump')
+  // Load the plugin that provides the "uglify" task.
+  // grunt.loadNpmTasks('grunt-contrib-jshint')
+  grunt.loadNpmTasks('grunt-text-replace')
+  grunt.loadNpmTasks('grunt-contrib-uglify')
+  grunt.loadNpmTasks('grunt-contrib-cssmin')
+  grunt.loadNpmTasks('grunt-jquerymanifest')
+  grunt.loadNpmTasks('grunt-mocha')
+  grunt.loadNpmTasks('grunt-bump')
 
-// Default task(s).
-grunt.registerTask('default', ['replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest'])
-grunt.registerTask('test-release', ['bump-only:patch', 'replace', 'uglify', 'cssmin', 'jquerymanifest'])
+  // Default task(s).
+  grunt.registerTask('default', ['replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest'])
+  grunt.registerTask('test-release', ['bump-only:patch', 'replace', 'uglify', 'cssmin', 'jquerymanifest'])
 
-grunt.registerTask('patch',   ['bump-only:patch', 'replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest', 'bump-commit', 'replace:changelog',])
-grunt.registerTask('minor',   ['bump-only:minor', 'replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest', 'bump-commit', 'replace:changelog',])
-grunt.registerTask('major',   ['bump-only:major', 'replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest', 'bump-commit', 'replace:changelog',])
+  grunt.registerTask('patch',   ['bump-only:patch', 'replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest', 'bump-commit', 'replace:changelog',])
+  grunt.registerTask('minor',   ['bump-only:minor', 'replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest', 'bump-commit', 'replace:changelog',])
+  grunt.registerTask('major',   ['bump-only:major', 'replace:src', 'replace:min', 'uglify', 'cssmin', 'jquerymanifest', 'bump-commit', 'replace:changelog',])
 
-grunt.registerTask('test',    ['mocha'])
+  grunt.registerTask('test',    ['mocha'])
 }
