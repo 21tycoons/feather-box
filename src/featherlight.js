@@ -125,19 +125,21 @@
 	//   parseAttrs({hello: 1, hellFrozeOver: 2}, 'hell') => {froze-over: 2}
 	function parseAttrs(obj, prefix) {
 		var attrs = {},
-			regex = new RegExp('^' + prefix + '([A-Z])(.*)');
+		regex = new RegExp('^' + prefix + '([A-Z])(.*)')
+
 		for (var key in obj) {
-			var match = key.match(regex);
+			var match = key.match(regex)
 			if (match) {
-				var dasherized = (match[1] + match[2].replace(/([A-Z])/g, '-$1')).toLowerCase();
-				attrs[dasherized] = obj[key];
+				var dasherized = (match[1] + match[2].replace(/([A-Z])/g, '-$1')).toLowerCase()
+				attrs[dasherized] = obj[key]
 			}
 		}
-		return attrs;
+
+		return attrs
 	}
 
 	/* document wide key handler */
-	var eventMap = { keyup: 'onKeyUp', resize: 'onResize' };
+	var eventMap = { keyup: 'onKeyUp', resize: 'onResize' }
 
 	var globalEventHandler = function(event) {
 		$.each(Featherlight.opened().reverse(), function() {
@@ -146,16 +148,16 @@
 					event.preventDefault(); event.stopPropagation(); return false;
 			  }
 			}
-		});
-	};
+		})
+	}
 
 	var toggleGlobalEvents = function(set) {
-			if(set !== Featherlight._globalHandlerInstalled) {
+			if (set !== Featherlight._globalHandlerInstalled) {
 				Featherlight._globalHandlerInstalled = set;
 				var events = $.map(eventMap, function(_, name) { return name+'.'+Featherlight.prototype.namespace; } ).join(' ');
-				$(window)[set ? 'on' : 'off'](events, globalEventHandler);
+				$(window)[set ? 'on' : 'off'](events, globalEventHandler)
 			}
-		};
+		}
 
 	Featherlight.prototype = {
 		constructor: Featherlight,
@@ -194,8 +196,8 @@
 		setup: function(target, config){
 			/* all arguments are optional */
 			if (typeof target === 'object' && target instanceof $ === false && !config) {
-				config = target;
-				target = undefined;
+				config = target
+				target = undefined
 			}
 
 			var self = $.extend(this, config, {target: target}),
@@ -252,7 +254,7 @@
 			data = data || readTargetAttr('href') || '';
 
 			/* check explicity type & content like {image: 'photo.jpg'} */
-			if(!filter) {
+			if (!filter) {
 				for(var filterName in filters) {
 					if(self[filterName]) {
 						filter = filters[filterName];
@@ -262,20 +264,24 @@
 			}
 
 			/* otherwise it's implicit, run checks */
-			if(!filter) {
-				var target = data;
-				data = null;
+			if (!filter) {
+				var target = data
+				data = null
+
 				$.each(self.contentFilters, function() {
-					filter = filters[this];
-					if(filter.test)  {
-						data = filter.test(target);
+					filter = filters[this]
+					if (filter.test)  {
+						data = filter.test(target)
 					}
-					if(!data && filter.regex && target.match && target.match(filter.regex)) {
-						data = target;
+
+					if (!data && filter.regex && target.match && target.match(filter.regex)) {
+						data = target
 					}
-					return !data;
-				});
-				if(!data) {
+
+					return !data
+				})
+
+				if (!data) {
 					if('console' in window){ window.console.error('Featherlight: no content filter found ' + (target ? ' for "' + target + '"' : ' (no target specified)')); }
 					return false;
 				}
