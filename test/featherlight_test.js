@@ -43,10 +43,9 @@ var stubAjaxLoad = function(content) {
 
 		it ('works on items with data-featherlight by default', function(done) {
 			expect($('img')).to.not.be.visible
-
 			$('#auto-bound').click()
-			patiently(done, [
 
+			patiently(done, [
 				function() {
 
 					expect($('.featherlight img')).to.be.visible
