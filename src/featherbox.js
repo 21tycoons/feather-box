@@ -61,22 +61,22 @@ The chainCallbacks is used since we don't have access to
 CoffeeScript's `super`.
 */
 
-function FeatherLight($content, config) {
-if (this instanceof FeatherLight) {  /* called with new */
-this.id = FeatherLight.id++
-this.setup($content, config)
-this.chainCallbacks(FeatherLight._callbackChain)
-} else {
-var featherLight = new FeatherLight($content, config)
-featherLight.open()
+  function FeatherLight($content, config) {
+    if (this instanceof FeatherLight) {  /* called with new */
+      this.id = FeatherLight.id++
+      this.setup($content, config)
+      this.chainCallbacks(FeatherLight._callbackChain)
+    } else {
+      var featherLight = new FeatherLight($content, config)
+      featherLight.open()
 
-return featherLight
-}
-}
+      return featherLight
+    }
+  }
 
-var opened = [],
-pruneOpened = function(remove) {
-opened = $.grep(opened, function(featherLight) {
+  var opened = [],
+  pruneOpened = function(remove) {
+  opened = $.grep(opened, function(featherLight) {
 return featherLight !== remove &&
 featherLight.$instance.closest('body').length > 0
 })
