@@ -1,7 +1,7 @@
 FeatherBox - ultra slim jQuery lightbox
 ------------------------
 
-**FeatherBox is a very lightweight jQuery lightbox plugin. For more information and demos, visit the [official website](https://www.noevu.ch/featherlight-js-the-ultra-slim-lightbox/).**
+**FeatherBox is a very lightweight jQuery lightbox plugin.**
 
 * Simple yet flexible
 * Image, Ajax, iFrame and custom content support
