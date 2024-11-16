@@ -31,74 +31,75 @@
 })(function($) {
   "use strict";
 
-  if('undefined' === typeof $) {
+  if ('undefined' === typeof $) {
     if('console' in window){ window.console.info('Too much lightness, FeatherBox needs jQuery.'); }
-      return;
+    return;
   }
-  if($.fn.jquery.match(/-ajax/)) {
-    if('console' in window){ window.console.info('FeatherBox needs regular jQuery, not the slim version.'); }
-      return;
-    }
+
+  if ($.fn.jquery.match(/-ajax/)) {
+    if ('console' in window) { window.console.info('FeatherBox needs regular jQuery, not the slim version.'); }
+    return;
+  }
 
     /* FeatherBox is exported as $.featherlight.
     It is a function used to open a featherlight lightbox.
 
-[tech]
-FeatherBox uses prototype inheritance.
-Each opened lightbox will have a corresponding object.
-That object may have some attributes that override the
-prototype's.
-Extensions created with FeatherBox.extend will have their
-own prototype that inherits from FeatherBox's prototype,
-thus attributes can be overriden either at the object level,
-or at the extension level.
-To create callbacks that chain themselves instead of overriding,
-use chainCallbacks.
-For those familiar with CoffeeScript, this correspond to
-FeatherBox being a class and the Gallery being a class
-extending FeatherBox.
-The chainCallbacks is used since we don't have access to
-CoffeeScript's `super`.
-*/
+    [tech]
+    FeatherBox uses prototype inheritance.
+    Each opened lightbox will have a corresponding object.
+    That object may have some attributes that override the
+    prototype's.
+    Extensions created with FeatherBox.extend will have their
+    own prototype that inherits from FeatherBox's prototype,
+    thus attributes can be overriden either at the object level,
+    or at the extension level.
+    To create callbacks that chain themselves instead of overriding,
+    use chainCallbacks.
+    For those familiar with CoffeeScript, this correspond to
+    FeatherBox being a class and the Gallery being a class
+    extending FeatherBox.
+    The chainCallbacks is used since we don't have access to
+    CoffeeScript's `super`.
+    */
 
-function FeatherBox($content, config) {
-  if (this instanceof FeatherBox) {  /* called with new */
-    this.id = FeatherBox.id++
-    this.setup($content, config)
-    this.chainCallbacks(FeatherBox._callbackChain)
-  } else {
-    var featherBox = new FeatherBox($content, config)
-    featherBox.open()
-
-    return featherBox
+  function FeatherBox($content, config) {
+    if (this instanceof FeatherBox) {  /* called with new */
+      this.id = FeatherBox.id++
+      this.setup($content, config)
+      this.chainCallbacks(FeatherBox._callbackChain)
+    } else {
+      var featherBox = new FeatherBox($content, config)
+      featherBox.open()
+  
+      return featherBox
+    }
   }
-}
 
 
-var opened = []
+  var opened = []
 
-var pruneOpened = function(remove) {
-  opened = $.grep(opened, function(featherBox) {
-  return featherBox !== remove &&
-    featherBox.$instance.closest('body').length > 0
-  })
+  var pruneOpened = function(remove) {
+    opened = $.grep(opened, function(featherBox) {
+    return featherBox !== remove &&
+      featherBox.$instance.closest('body').length > 0
+    })
+  
+    return opened
+  }
 
-  return opened
-}
-
-// Removes keys of `set` from `obj` and returns the removed key/values.
-function slice(currentObject, set) {
-var newObject = {}
-
-for (var key in currentObject) {
-if (key in set) {
-newObject[key] = currentObject[key]
-delete currentObject[key]
-}
-}
-
-return newObject
-}
+  // Removes keys of `set` from `obj` and returns the removed key/values.
+  function slice(currentObject, set) {
+    var newObject = {}
+    
+    for (var key in currentObject) {
+      if (key in set) {
+        newObject[key] = currentObject[key]
+        delete currentObject[key]
+      }
+    }
+    
+    return newObject
+  }
 
 // NOTE: List of available [iframe attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
 var iFrameAttributeSet = {
