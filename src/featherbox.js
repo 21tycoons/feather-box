@@ -41,25 +41,24 @@
     return;
   }
 
-	/* FeatherBox is exported as $.featherlight.
-	It is a function used to open a featherlight lightbox.
-
-	[tech]
-	FeatherBox uses prototype inheritance.
-	Each opened lightbox will have a corresponding object.
-	That object may have some attributes that override the
-	prototype's.
-	Extensions created with FeatherBox.extend will have their
-	own prototype that inherits from FeatherBox's prototype,
-	thus attributes can be overriden either at the object level,
-	or at the extension level.
-	To create callbacks that chain themselves instead of overriding,
-	use chainCallbacks.
-	For those familiar with CoffeeScript, this correspond to
-	FeatherBox being a class and the Gallery being a class
-	extending FeatherBox.
-	The chainCallbacks is used since we don't have access to
-	CoffeeScript's `super`. */
+  /* FeatherBox is exported as $.featherlight.
+  It is a function used to open a featherlight lightbox.
+  [tech]
+  FeatherBox uses prototype inheritance.
+  Each opened lightbox will have a corresponding object.
+  That object may have some attributes that override the
+  prototype's.
+  Extensions created with FeatherBox.extend will have their
+  own prototype that inherits from FeatherBox's prototype,
+  thus attributes can be overriden either at the object level,
+  or at the extension level.
+  To create callbacks that chain themselves instead of overriding,
+  use chainCallbacks.
+  For those familiar with CoffeeScript, this correspond to
+  FeatherBox being a class and the Gallery being a class
+  extending FeatherBox.
+  The chainCallbacks is used since we don't have access to
+  CoffeeScript's `super`. */
 
   function FeatherBox($content, config) {
     if (this instanceof FeatherBox) {  /* called with new */
