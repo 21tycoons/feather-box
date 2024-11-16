@@ -1,7 +1,7 @@
 {
   "name": "@21tycoons/feather-box",
   "title": "FeatherBox is a super thin jQuery lightbox package",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "author": { "name": "21tycoons LLC" },
   "contributors": [{ "name": "Liroy Leshed" }, { "name": "Noël Raoul Bossart" }],
   "url": "",
@@ -53,13 +53,13 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://raw.github.com/21tycoons/featherbox/master/LICENSE"
+      "url": "https://raw.github.com/21tycoons/featherbox/main/LICENSE"
     }
   ],
-  "main": "release/featherbox.min.js",
+  "main": "release/feather-box.min.js",
   "repository": {
   "type": "git",
-  "url": "https://github.com/21tycoons/featherbox.git"
+  "url": "https://github.com/21tycoons/feather-box.git"
   },
   "scripts": {
     "build": "grunt",
