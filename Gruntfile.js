@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   var gallery = '/**\n * Featherlight Gallery – an extension for the ultra slim jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
 
   const uglifyConfig = {
-    featherlight: {
+    featherbox: {
       options: {
         banner: banner+'\n'
       },
