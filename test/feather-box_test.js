@@ -1,40 +1,40 @@
 var expect = chai.expect
 
 var stubAjaxLoad = function(content) {
-var oldLoad = $.fn.load
+  var oldLoad = $.fn.load
 
-$.fn.load = function(url, callback) {
+  $.fn.load = function(url, callback) {
+    var $this = this
+    $.fn.load = oldLoad
 
-var $this = this
-$.fn.load = oldLoad
+    window.setTimeout(function() {
+      $this.html(content)
+      callback(null, "success")
+    })
 
-window.setTimeout(function() {
-$this.html(content)
-callback(null, "success")
-})
-
-return this
-}
+    return this
+  }
 }
 
 (function($) {
-var $htmlFixtures = null
-var resetFixtures = function() {
-if (!$htmlFixtures) $htmlFixtures = $('#fixtures').detach()
-$('body >:not(#mocha)').remove()
-$('body').append($htmlFixtures.clone(true))
-}
+  var $htmlFixtures = null
+  var resetFixtures = function() {
+    if (!$htmlFixtures) $htmlFixtures = $('#fixtures').detach()
+    $('body >:not(#mocha)').remove()
+    $('body').append($htmlFixtures.clone(true))
+  }
 
-var triggerKeyCode = function(keyCode) {
-$(window).trigger($.Event("keyup", { keyCode: keyCode }))
-}
+  var triggerKeyCode = function(keyCode) {
+    $(window).trigger($.Event("keyup", { keyCode: keyCode }))
+  }
 
-var triggerEscape = function() {
-triggerKeyCode(27)
-}
+  var triggerEscape = function() {
+    triggerKeyCode(27)
+  }
 
-$.fx.off = true
-$.fn.toJSON = function() { return 'jQuery: ' + this.selector + ' (' + this.length + ')' }
+  $.fx.off = true
+  $.fn.toJSON = function() { return 'jQuery: ' + this.selector + ' (' + this.length + ')' }
+
 
 describe('Featherlight', function() {
 
