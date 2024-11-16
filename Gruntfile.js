@@ -20,26 +20,27 @@ module.exports = function(grunt) {
     }
   }
 
+  const jshintConfig = {
+    options: {
+      laxbreak: true,
+      curly: true,
+      eqeqeq: true,
+      eqnull: true,
+      browser: true,
+      reporterOutput: "",
+      globals: {
+        jQuery: true,
+        Hammer: true,
+        el: true
+      },
+    },
+    uses_defaults: ['src/*.js']
+  }
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     uglify: uglifyConfig,
-    jshint: {
-options: {
-laxbreak: true,
-curly: true,
-eqeqeq: true,
-eqnull: true,
-browser: true,
-reporterOutput: "",
-globals: {
-jQuery: true,
-Hammer: true,
-el: true
-},
-},
-uses_defaults: ['src/*.js']
-},
+    jshint: jshintConfig,
 cssmin: {
 options: {
 keepSpecialComments: 1
