@@ -4,44 +4,44 @@
 * Copyright 2024. MIT License.
 **/
 (function (factory) {
-if (typeof define === 'function' && define.amd) {
-// AMD. Register as an anonymous module.
-define(['jquery'], factory);
-} else if (typeof module === 'object' && module.exports) {
-// Node/CommonJS
-module.exports = function (root, jQuery) {
-if (jQuery === undefined) {
-// require('jQuery') returns a factory that requires window to
-// build a jQuery instance, we normalize how we use modules
-// that require this pattern but the window provided is a noop
-// if it's defined (how jquery works)
-if (typeof window !== 'undefined') {
-jQuery = require('jquery');
-} else {
-jQuery = require('jquery')(root);
-}
-}
-factory(jQuery);
-return jQuery;
-};
-} else {
-// Browser globals
-factory(jQuery);
-}
+  if (typeof define === 'function' && define.amd) {
+  // AMD. Register as an anonymous module.
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    // Node/CommonJS
+    module.exports = function (root, jQuery) {
+      if (jQuery === undefined) {
+        // require('jQuery') returns a factory that requires window to
+        // build a jQuery instance, we normalize how we use modules
+        // that require this pattern but the window provided is a noop
+        // if it's defined (how jquery works)
+        if (typeof window !== 'undefined') {
+          jQuery = require('jquery');
+        } else {
+          jQuery = require('jquery')(root);
+        }
+      }
+      factory(jQuery);
+      return jQuery;
+    };
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
 })(function($) {
-"use strict";
+  "use strict";
 
-if('undefined' === typeof $) {
-if('console' in window){ window.console.info('Too much lightness, FeatherBox needs jQuery.'); }
-return;
-}
-if($.fn.jquery.match(/-ajax/)) {
-if('console' in window){ window.console.info('FeatherBox needs regular jQuery, not the slim version.'); }
-return;
-}
+  if('undefined' === typeof $) {
+    if('console' in window){ window.console.info('Too much lightness, FeatherBox needs jQuery.'); }
+      return;
+  }
+  if($.fn.jquery.match(/-ajax/)) {
+    if('console' in window){ window.console.info('FeatherBox needs regular jQuery, not the slim version.'); }
+      return;
+    }
 
-/* FeatherBox is exported as $.featherlight.
-It is a function used to open a featherlight lightbox.
+    /* FeatherBox is exported as $.featherlight.
+    It is a function used to open a featherlight lightbox.
 
 [tech]
 FeatherBox uses prototype inheritance.
