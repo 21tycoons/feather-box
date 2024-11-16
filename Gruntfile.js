@@ -3,23 +3,23 @@ module.exports = function(grunt) {
   var banner = '/**\n * Featherbox - super thin jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT License.\n**/';
   var gallery = '/**\n * Featherlight Gallery – an extension for the ultra slim jQuery lightbox\n * Version <%= pkg.version %> - <%= pkg.homepage %>\n *\n * Copyright <%= grunt.template.today("yyyy") %>, <%= pkg.author.name %> (<%= pkg.author.url %>)\n * MIT Licensed.\n**/';
   grunt.initConfig({
-pkg: grunt.file.readJSON('package.json'),
-uglify: {
-featherlight: {
-options: {
-banner: banner+'\n'
-},
-src: './src/feather-box.js',
-dest: './release/feather-box.min.js'
-},
-gallery: {
-options: {
-banner: gallery
-},
-src: './src/feather-box.gallery.js',
-dest: './release/feather-box.gallery.min.js'
-}
-},
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      featherlight: {
+        options: {
+          banner: banner+'\n'
+        },
+        src: './src/feather-box.js',
+        dest: './release/feather-box.min.js'
+      },
+      gallery: {
+        options: {
+          banner: gallery
+        },
+        src: './src/feather-box.gallery.js',
+        dest: './release/feather-box.gallery.min.js'
+      }
+    },
 jshint: {
 options: {
 laxbreak: true,
