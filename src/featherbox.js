@@ -120,25 +120,25 @@
 		width: 1
 	}
 
-// Converts camelCased attributes to dasherized versions for given prefix:
-//   parseAttrs({hello: 1, hellFrozeOver: 2}, 'hell') => {froze-over: 2}
-function parseAttrs(obj, prefix) {
-var attrs = {},
-regex = new RegExp('^' + prefix + '([A-Z])(.*)')
+  // Converts camelCased attributes to dasherized versions for given prefix:
+  //   parseAttrs({hello: 1, hellFrozeOver: 2}, 'hell') => {froze-over: 2}
+  function parseAttrs(obj, prefix) {
+    var attrs = {},
+    regex = new RegExp('^' + prefix + '([A-Z])(.*)')
 
-for (var key in obj) {
-var match = key.match(regex)
-if (match) {
-var dasherized = (match[1] + match[2].replace(/([A-Z])/g, '-$1')).toLowerCase()
-attrs[dasherized] = obj[key]
-}
-}
+    for (var key in obj) {
+      var match = key.match(regex)
+      if (match) {
+        var dasherized = (match[1] + match[2].replace(/([A-Z])/g, '-$1')).toLowerCase()
+        attrs[dasherized] = obj[key]
+      }
+    }
 
-return attrs
-}
+    return attrs
+  }
 
-/* document wide key handler */
-var eventMap = { keyup: 'onKeyUp', resize: 'onResize' }
+  /* document wide key handler */
+  var eventMap = { keyup: 'onKeyUp', resize: 'onResize' }
 
 var globalEventHandler = function(event) {
 $.each(FeatherBox.opened().reverse(), function() {
