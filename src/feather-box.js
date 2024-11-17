@@ -132,13 +132,13 @@
 
   var globalEventHandler = function(event) {
     $.each(FeatherBox.opened().reverse(), function() {
-if (!event.isDefaultPrevented()) {
-if (false === this[eventMap[event.type]](event)) {
-event.preventDefault(); event.stopPropagation(); return false;
-}
-}
-})
-}
+      if (!event.isDefaultPrevented()) {
+        if (false === this[eventMap[event.type]](event)) {
+          event.preventDefault(); event.stopPropagation(); return false;
+        }
+      }
+    })
+  }
 
 var toggleGlobalEvents = function(set) {
 if (set !== FeatherBox._globalHandlerInstalled) {
