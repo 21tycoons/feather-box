@@ -32,12 +32,12 @@
   "use strict"
 
   if ('undefined' === typeof $) {
-    if ('console' in window) { window.console.info('Too much lightness, FeatherBox needs jQuery.') }
+    if ('console' in window) { window.console.info('Feather-Box requires jQuery.') }
     return
   }
 
   if ($.fn.jquery.match(/-ajax/)) {
-    if ('console' in window) { window.console.info('FeatherBox needs regular jQuery, not the slim version.') }
+    if ('console' in window) { window.console.info('Feather-Box requires regular jQuery, not the slim version.') }
     return
   }
 
