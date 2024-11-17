@@ -203,7 +203,7 @@
         '</div>',
         '</div>'].join(''))
 
-      const closeButtonSelector = '.'+self.namespace+'-close' + (self.otherClose ? ',' + self.otherClose : '')
+      const closeButtonSelector = '.' + self.namespace + '-close' + (self.otherClose ? ',' + self.otherClose : '')
 
       self.$instance = $background.clone().addClass(self.variant) /* clone DOM for the background, wrapper and the close button */
 
