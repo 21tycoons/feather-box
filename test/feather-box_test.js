@@ -48,9 +48,9 @@ var stubAjaxLoad = function(content) {
       patiently(done, [
         function() {
 
-          expect($('.featherlight img')).to.be.visible
-          expect($('.featherlight img')).to.have.attr('src').equal('fixtures/photo.jpeg')
-          $('.featherlight').click()
+          expect($('.feather-box img')).to.be.visible
+          expect($('.feather-box img')).to.have.attr('src').equal('fixtures/photo.jpeg')
+          $('.feather-box').click()
 
         },
         function() {
