@@ -182,7 +182,6 @@
       contentFilters: ['jquery', 'image', 'html', 'ajax', 'iframe', 'text'], /* List of content filters to use to determine the content */  
     },
 
-    /* setup iterates over a single instance of featherlight and prepares the background and binds the events */
     install: function(target, config) {
       /* Make all arguments optional */
       if (typeof target === 'object' && target instanceof $ === false && !config) {
