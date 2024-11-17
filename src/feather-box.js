@@ -134,7 +134,9 @@
     $.each(FeatherBox.opened().reverse(), function() {
       if (!event.isDefaultPrevented()) {
         if (false === this[eventMap[event.type]](event)) {
-          event.preventDefault(); event.stopPropagation(); return false;
+          event.preventDefault()
+          event.stopPropagation()
+          return false
         }
       }
     })
