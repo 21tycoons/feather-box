@@ -89,7 +89,7 @@
     return newObject
   }
 
-  const iFrameAttributeSet = {
+  const iFrameAttribute = {
     allow: 1,
     allowfullscreen: 1,
     frameborder: 1,
@@ -109,8 +109,8 @@
     width: 1
   }
 
-  // Converts camelCased attributes to dasherized versions for given prefix:
-  //   parseAttrs({hello: 1, hellFrozeOver: 2}, 'hell') => {froze-over: 2}
+  // Converts camelCased attributes to dasherized versions for given prefix,
+  // for example: parseAttrs({ hello: 1, hellFrozeOver: 2 }, 'hell') => {froze-over: 2}
   function parseAttributes(object, prefix) {
     var attributes = {},
     regex = new RegExp('^' + prefix + '([A-Z])(.*)')
@@ -149,7 +149,7 @@
     }
   }
 
-FeatherBox.prototype = {
+  FeatherBox.prototype = {
 constructor: FeatherBox,
 /*** defaults ***/
 /* extend featherlight with defaults and methods */
