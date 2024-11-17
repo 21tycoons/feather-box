@@ -17,7 +17,8 @@ var stubAjaxLoad = function(content) {
 }
 
 (function($) {
-  var $htmlFixtures = null
+  let $htmlFixtures = null
+
   var resetFixtures = function() {
     if (!$htmlFixtures) $htmlFixtures = $('#fixtures').detach()
     $('body >:not(#mocha)').remove()
