@@ -59,7 +59,7 @@ var stubAjaxLoad = function(content) {
       ])
     })
 
-    it ('works on items with data-featherlight by default', function(done) {
+    it ('works on items with data-feather-box by default', function(done) {
       $('body').append('<div id="auto-bound-2" data-feather-box="fixtures/photo.jpeg">Dynamic</div>')
       expect($('img')).to.not.be.visible
       $('#auto-bound-2').click()
