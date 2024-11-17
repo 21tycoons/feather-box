@@ -130,8 +130,8 @@
   /* document wide key handler */
   var eventMap = { keyup: 'onKeyUp', resize: 'onResize' }
 
-var globalEventHandler = function(event) {
-$.each(FeatherBox.opened().reverse(), function() {
+  var globalEventHandler = function(event) {
+    $.each(FeatherBox.opened().reverse(), function() {
 if (!event.isDefaultPrevented()) {
 if (false === this[eventMap[event.type]](event)) {
 event.preventDefault(); event.stopPropagation(); return false;
