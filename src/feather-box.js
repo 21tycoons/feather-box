@@ -64,9 +64,9 @@
     }
   }
 
-  var openedCache = []
-  
-  var pruneOpened = function(remove) {
+  let openedCache = []
+
+  const pruneOpened = function(remove) {
     openedCache = $.grep(openedCache, function(featherBox) {
       let exists = featherBox.$instance.closest('body').length > 0
       return featherBox !== remove && exists
