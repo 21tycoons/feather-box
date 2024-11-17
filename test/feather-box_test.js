@@ -41,7 +41,7 @@ var stubAjaxLoad = function(content) {
     beforeEach(resetFixtures)
     after(resetFixtures)
 
-    it ('works on items with data-featherlight by default', function(done) {
+    it ('works on items with data-feather-box by default', function(done) {
       expect($('img')).to.not.be.visible
       $('#auto-bound').click()
 
