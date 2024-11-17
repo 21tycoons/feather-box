@@ -127,7 +127,7 @@
     return attributes
   }
 
-  /* document wide key handler */
+
   var eventMap = { keyup: 'onKeyUp', resize: 'onResize' }
 
   var globalEventHandler = function(event) {
@@ -142,13 +142,13 @@
     })
   }
 
-var toggleGlobalEvents = function(set) {
-if (set !== FeatherBox._globalHandlerInstalled) {
-FeatherBox._globalHandlerInstalled = set;
-var events = $.map(eventMap, function(_, name) { return name+'.'+FeatherBox.prototype.namespace; } ).join(' ');
-$(window)[set ? 'on' : 'off'](events, globalEventHandler)
-}
-}
+  var toggleGlobalEvents = function(set) {
+    if (set !== FeatherBox._globalHandlerInstalled) {
+      FeatherBox._globalHandlerInstalled = set
+      var events = $.map(eventMap, function(_, name) { return name+'.'+FeatherBox.prototype.namespace; } ).join(' ');
+      $(window)[set ? 'on' : 'off'](events, globalEventHandler)
+    }
+  }
 
 FeatherBox.prototype = {
 constructor: FeatherBox,
