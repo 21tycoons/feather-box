@@ -1,7 +1,7 @@
 🪶 Feather-Box: super thin jQuery lightbox 
 ------------------------
 
-**FeatherBox is super thin jQuery lightbox package.**
+**Feather-Box is a super thin jQuery lightbox package.**
 
 
 
