@@ -68,7 +68,7 @@
   
   var pruneOpened = function(remove) {
     openedCache = $.grep(openedCache, function(featherBox) {
-      var exists = featherBox.$instance.closest('body').length > 0
+      let exists = featherBox.$instance.closest('body').length > 0
       return featherBox !== remove && exists
     })
   
@@ -79,7 +79,7 @@
   function slice(currentObject, set) {
     var newObject = {}
     
-    for (var key in currentObject) {
+    for (let key in currentObject) {
       if (key in set) {
         newObject[key] = currentObject[key]
         delete currentObject[key]
@@ -208,18 +208,19 @@
       self.$instance = $background.clone().addClass(self.variant) /* clone DOM for the background, wrapper and the close button */
 
       /* close when click on background/anywhere/null or closebox */
-      self.$instance.on(self.closeTrigger+'.'+self.namespace, function(event) {
+      self.$instance.on(self.closeTrigger + '.' + self.namespace, function(event) {
         if (event.isDefaultPrevented()) {
-        return
-      }
+          return
+        }
 
-      var $target = $(event.target)
-      if( ('background' === self.closeOnClick  && $target.is('.'+self.namespace))
-      || 'anywhere' === self.closeOnClick
-      || $target.closest(closeButtonSelector).length ) {
-      self.close(event)
-      event.preventDefault()
-      }
+        let $target = $(event.target)
+
+        if ( ('background' === self.closeOnClick  && $target.is('.'+self.namespace) )
+          || 'anywhere' === self.closeOnClick
+          || $target.closest(closeButtonSelector).length ) {
+            self.close(event)
+            event.preventDefault()
+          }
       })
       
       return this
