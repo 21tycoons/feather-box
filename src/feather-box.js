@@ -184,17 +184,17 @@
 
     /* setup iterates over a single instance of featherlight and prepares the background and binds the events */
     install: function(target, config) {
-      /* all arguments are optional */
+      /* Make all arguments optional */
       if (typeof target === 'object' && target instanceof $ === false && !config) {
         config = target
         target = undefined
       }
 
-      var self = $.extend(this, config, { target: target }),
+      let self = $.extend(this, config, { target: target })
 
-      css = !self.resetCss ? self.namespace : self.namespace+'-reset', /* by adding -reset to the classname, we reset all the default css */
+      const css = !self.resetCss ? self.namespace : `${self.namespace + "-reset"}` /* by adding -reset to the classname, we reset all the default css */
 
-      $background = $(self.background || [
+      const $background = $(self.background || [
         '<div class="'+css+'-loading '+css+'">',
         '<div class="'+css+'-content">',
         '<button class="'+css+'-close-icon '+ self.namespace + '-close" aria-label="Close">',
@@ -202,9 +202,9 @@
         '</button>',
         '<div class="'+self.namespace+'-inner">' + self.loading + '</div>',
         '</div>',
-        '</div>'].join('')),
+        '</div>'].join(''))
 
-      closeButtonSelector = '.'+self.namespace+'-close' + (self.otherClose ? ',' + self.otherClose : '')
+      const closeButtonSelector = '.'+self.namespace+'-close' + (self.otherClose ? ',' + self.otherClose : '')
 
       self.$instance = $background.clone().addClass(self.variant) /* clone DOM for the background, wrapper and the close button */
 
@@ -223,8 +223,9 @@
       }
       })
       
-      return this;
+      return this
     },
+
 
 /* this method prepares the content and converts it into a jQuery object or a promise */
 getContent: function(){
