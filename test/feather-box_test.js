@@ -36,28 +36,28 @@ var stubAjaxLoad = function(content) {
   $.fn.toJSON = function() { return 'jQuery: ' + this.selector + ' (' + this.length + ')' }
 
 
-describe('Featherlight', function() {
+  describe('Featherlight', function() {
 
-beforeEach(resetFixtures)
-after(resetFixtures)
+    beforeEach(resetFixtures)
+    after(resetFixtures)
 
-it ('works on items with data-featherlight by default', function(done) {
-expect($('img')).to.not.be.visible
-$('#auto-bound').click()
+    it ('works on items with data-featherlight by default', function(done) {
+      expect($('img')).to.not.be.visible
+      $('#auto-bound').click()
 
-patiently(done, [
-function() {
+      patiently(done, [
+        function() {
 
-expect($('.featherlight img')).to.be.visible
-expect($('.featherlight img')).to.have.attr('src').equal('fixtures/photo.jpeg')
-$('.featherlight').click()
+          expect($('.featherlight img')).to.be.visible
+          expect($('.featherlight img')).to.have.attr('src').equal('fixtures/photo.jpeg')
+          $('.featherlight').click()
 
-}, function() {
-
-expect($('img')).to.not.be.visible
-}
-])
-})
+        },
+        function() {
+          expect($('img')).to.not.be.visible
+        }
+      ])
+    })
 
 it ('works on items with data-featherlight by default', function(done) {
 $('body').append('<div id="auto-bound-2" data-featherlight="fixtures/photo.jpeg">Dynamic</div>')
