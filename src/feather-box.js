@@ -6,7 +6,7 @@
 (function (factory) {
   if (typeof define === 'function' && define.amd) {
   // AMD. Register as an anonymous module.
-    define(['jquery'], factory);
+    define(['jquery'], factory)
   } else if (typeof module === 'object' && module.exports) {
     // Node/CommonJS
     module.exports = function (root, jQuery) {
@@ -16,29 +16,29 @@
         // that require this pattern but the window provided is a noop
         // if it's defined (how jquery works)
         if (typeof window !== 'undefined') {
-          jQuery = require('jquery');
+          jQuery = require('jquery')
         } else {
-          jQuery = require('jquery')(root);
+          jQuery = require('jquery')(root)
         }
       }
-      factory(jQuery);
-      return jQuery;
-    };
+      factory(jQuery)
+      return jQuery
+    }
   } else {
     // Browser globals
-    factory(jQuery);
+    factory(jQuery)
   }
 })(function($) {
-  "use strict";
+  "use strict"
 
   if ('undefined' === typeof $) {
-    if('console' in window){ window.console.info('Too much lightness, FeatherBox needs jQuery.'); }
-    return;
+    if ('console' in window) { window.console.info('Too much lightness, FeatherBox needs jQuery.') }
+    return
   }
 
   if ($.fn.jquery.match(/-ajax/)) {
     if ('console' in window) { window.console.info('FeatherBox needs regular jQuery, not the slim version.'); }
-    return;
+    return
   }
 
   /* FeatherBox is exported as $.featherBox. FeatherBox uses prototype inheritance.
@@ -51,7 +51,7 @@
   CoffeeScript's `super`. */
 
   function FeatherBox($content, config) {
-    if (this instanceof FeatherBox) {  /* called with new */
+    if (this instanceof FeatherBox) {  /* called with new FeatherBox() */
       this.id = FeatherBox.id++
       this.setup($content, config)
       this.chainCallbacks(FeatherBox._callbackChain)
