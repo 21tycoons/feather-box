@@ -54,7 +54,7 @@
   function FeatherBox($content, config) {
     if (this instanceof FeatherBox) {  /* called with new FeatherBox() */
       this.id = FeatherBox.id++
-      this.setup($content, config)
+      this.install($content, config)
       this.chainCallbacks(FeatherBox._callbackChain)
     } else {
       var featherBox = new FeatherBox($content, config)
@@ -183,7 +183,7 @@
     },
 
     /* setup iterates over a single instance of featherlight and prepares the background and binds the events */
-    setup: function(target, config) {
+    install: function(target, config) {
       /* all arguments are optional */
       if (typeof target === 'object' && target instanceof $ === false && !config) {
         config = target
