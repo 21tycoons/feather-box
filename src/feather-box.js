@@ -68,8 +68,8 @@
   
   var pruneOpened = function(remove) {
     openedCache = $.grep(openedCache, function(featherBox) {
-    var exists = featherBox.$instance.closest('body').length > 0
-    return featherBox !== remove && exists
+      var exists = featherBox.$instance.closest('body').length > 0
+      return featherBox !== remove && exists
     })
   
     return openedCache
