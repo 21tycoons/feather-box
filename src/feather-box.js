@@ -182,48 +182,45 @@
       contentFilters: ['jquery', 'image', 'html', 'ajax', 'iframe', 'text'], /* List of content filters to use to determine the content */  
     },
 
-    methods: {}
+    /* setup iterates over a single instance of featherlight and prepares the background and binds the events */
+    setup: function(target, config) {
+      /* all arguments are optional */
+      if (typeof target === 'object' && target instanceof $ === false && !config) {
+        config = target
+        target = undefined
+      }
 
-/*** methods ***/
-/* setup iterates over a single instance of featherlight and prepares the background and binds the events */
-setup: function(target, config){
-/* all arguments are optional */
-if (typeof target === 'object' && target instanceof $ === false && !config) {
-config = target
-target = undefined
-}
+      var self = $.extend(this, config, {target: target}),
+      css = !self.resetCss ? self.namespace : self.namespace+'-reset', /* by adding -reset to the classname, we reset all the default css */
+      $background = $(self.background || [
+      '<div class="'+css+'-loading '+css+'">',
+      '<div class="'+css+'-content">',
+      '<button class="'+css+'-close-icon '+ self.namespace + '-close" aria-label="Close">',
+      self.closeIcon,
+      '</button>',
+      '<div class="'+self.namespace+'-inner">' + self.loading + '</div>',
+      '</div>',
+      '</div>'].join('')),
+      closeButtonSelector = '.'+self.namespace+'-close' + (self.otherClose ? ',' + self.otherClose : '');
 
-var self = $.extend(this, config, {target: target}),
-css = !self.resetCss ? self.namespace : self.namespace+'-reset', /* by adding -reset to the classname, we reset all the default css */
-$background = $(self.background || [
-'<div class="'+css+'-loading '+css+'">',
-'<div class="'+css+'-content">',
-'<button class="'+css+'-close-icon '+ self.namespace + '-close" aria-label="Close">',
-self.closeIcon,
-'</button>',
-'<div class="'+self.namespace+'-inner">' + self.loading + '</div>',
-'</div>',
-'</div>'].join('')),
-closeButtonSelector = '.'+self.namespace+'-close' + (self.otherClose ? ',' + self.otherClose : '');
+      self.$instance = $background.clone().addClass(self.variant); /* clone DOM for the background, wrapper and the close button */
 
-self.$instance = $background.clone().addClass(self.variant); /* clone DOM for the background, wrapper and the close button */
-
-/* close when click on background/anywhere/null or closebox */
-self.$instance.on(self.closeTrigger+'.'+self.namespace, function(event) {
-if(event.isDefaultPrevented()) {
-return;
-}
-var $target = $(event.target);
-if( ('background' === self.closeOnClick  && $target.is('.'+self.namespace))
-|| 'anywhere' === self.closeOnClick
-|| $target.closest(closeButtonSelector).length ){
-self.close(event);
-event.preventDefault();
-}
-});
-
-return this;
-},
+      /* close when click on background/anywhere/null or closebox */
+      self.$instance.on(self.closeTrigger+'.'+self.namespace, function(event) {
+      if(event.isDefaultPrevented()) {
+      return;
+      }
+      var $target = $(event.target);
+      if( ('background' === self.closeOnClick  && $target.is('.'+self.namespace))
+      || 'anywhere' === self.closeOnClick
+      || $target.closest(closeButtonSelector).length ){
+      self.close(event);
+      event.preventDefault();
+      }
+      });
+      
+      return this;
+    },
 
 /* this method prepares the content and converts it into a jQuery object or a promise */
 getContent: function(){
