@@ -89,8 +89,7 @@
     return newObject
   }
 
-  // NOTE: List of available [iframe attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
-  var iFrameAttributeSet = {
+  const iFrameAttributeSet = {
     allow: 1,
     allowfullscreen: 1,
     frameborder: 1,
