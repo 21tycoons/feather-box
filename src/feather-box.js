@@ -63,7 +63,6 @@
     }
   }
 
-
   var opened = []
 
   var pruneOpened = function(remove) {
