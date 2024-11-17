@@ -64,15 +64,15 @@
     }
   }
 
-  var opened = []
-
+  var openedCache = []
+  
   var pruneOpened = function(remove) {
-    opened = $.grep(opened, function(featherBox) {
-    return featherBox !== remove &&
-      featherBox.$instance.closest('body').length > 0
+    openedCache = $.grep(openedCache, function(featherBox) {
+    var exists = featherBox.$instance.closest('body').length > 0
+    return featherBox !== remove && exists
     })
   
-    return opened
+    return openedCache
   }
 
   // Removes keys of `set` from `obj` and returns the removed key/values.
