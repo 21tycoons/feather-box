@@ -41,8 +41,9 @@
     return
   }
 
-  /* FeatherBox is exported as $.featherBox. FeatherBox uses prototype inheritance.
-  Each opened lightbox will have a corresponding object. That object may have some attributes that override the prototype's.
+  /* FeatherBox is exported as $.featherBox. FeatherBox uses prototypical inheritance.
+  Each opened lightbox will have a corresponding JavaScript object. This object may have some attributes that override its prototype's.
+
   Extensions created with FeatherBox.extend will have their own prototype that inherits from FeatherBox's prototype,
   thus attributes can be overriden either at the object level, or at the extension level.
   To create callbacks that chain themselves instead of overriding, use chainCallbacks.
