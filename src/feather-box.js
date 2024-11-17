@@ -37,7 +37,7 @@
   }
 
   if ($.fn.jquery.match(/-ajax/)) {
-    if ('console' in window) { window.console.info('FeatherBox needs regular jQuery, not the slim version.'); }
+    if ('console' in window) { window.console.info('FeatherBox needs regular jQuery, not the slim version.') }
     return
   }
 
