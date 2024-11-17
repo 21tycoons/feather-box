@@ -1,6 +1,6 @@
-var expect = chai.expect
+const expect = chai.expect
 
-var stubAjaxLoad = function(content) {
+const stubAjaxLoad = function(content) {
   var oldLoad = $.fn.load
 
   $.fn.load = function(url, callback) {
