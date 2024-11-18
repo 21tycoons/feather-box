@@ -43,7 +43,7 @@ const stubAjaxLoad = function(content) {
     after(resetFixtures)
 
     it ('works on items with data-feather-box by default', function(done) {
-      const image           = $('img')
+      const image           = $("img")
       const featherBoxImage = $(".feather-box img")
 
       expect(image).to.not.be.visible
