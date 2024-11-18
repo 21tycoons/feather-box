@@ -33,8 +33,8 @@ const stubAjaxLoad = function(content) {
     triggerKeyCode(27)
   }
 
-  $.fx.off = true
-  $.fn.toJSON = function() { return 'jQuery: ' + this.selector + ' (' + this.length + ')' }
+  $.fx.off    = true
+  $.fn.toJSON = function() { return  `jQuery: ${this.selector} (${this.length})` }
 
 
   describe('FeatherBox', function() {
@@ -43,19 +43,22 @@ const stubAjaxLoad = function(content) {
     after(resetFixtures)
 
     it ('works on items with data-feather-box by default', function(done) {
-      expect($('img')).to.not.be.visible
+      const image           = $('img')
+      const featherBoxImage = $(".feather-box img")
+
+      expect(image).to.not.be.visible
+
       $('#auto-bound').click()
 
       patiently(done, [
         function() {
-          const image = $(".feather-box img")
-          expect(image).to.be.visible
-          expect(image).to.have.attr('src').equal('fixtures/photo.jpeg')
+          expect(featherBoxImage).to.be.visible
+          expect(featherBoxImage).to.have.attr('src').equal('fixtures/photo.jpeg')
           $('.feather-box').click()
 
         },
         function() {
-          expect($('img')).to.not.be.visible
+          expect(image).to.not.be.visible
         }
       ])
     })
