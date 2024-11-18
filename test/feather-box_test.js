@@ -66,8 +66,9 @@ const stubAjaxLoad = function(content) {
 
       patiently(done, [
         function() {
-          expect($('.feather-box img')).to.be.visible
-          expect($('.feather-box img')).to.have.attr('src').equal('fixtures/photo.jpeg')
+          const imageSelector = ".feather-box img"
+          expect($(imageSelector)).to.be.visible
+          expect($(imageSelector)).to.have.attr('src').equal('fixtures/photo.jpeg')
           $('.feather-box').click()
 
         },
