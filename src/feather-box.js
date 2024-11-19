@@ -56,7 +56,7 @@
       this.install(element, config)
       this.chainCallbacks(FeatherBox._callbackChain)
     } else {
-      var featherBox = new FeatherBox(element, config)
+      const featherBox = new FeatherBox(element, config)
       featherBox.open()
   
       return featherBox
