@@ -291,121 +291,121 @@
       return filter.process.call(self, data)
     },
 
-/* sets the content of $instance to $content */
-setContent: function($content){
-this.$instance.removeClass(this.namespace+'-loading');
+    /* sets the content of $instance to $content */
+    setContent: function($content){
+      this.$instance.removeClass(this.namespace+'-loading');
+      
+      /* we need a special class for the iframe */
+      this.$instance.toggleClass(this.namespace+'-iframe', $content.is('iframe'));
+      
+      /* replace content by appending to existing one before it is removed
+      this insures that featherlight-inner remain at the same relative
+      position to any other items added to featherlight-content */
+      this.$instance.find('.'+this.namespace+'-inner')
+      .not($content)                /* excluded new content, important if persisted */
+      .slice(1).remove().end()      /* In the unexpected event where there are many inner elements, remove all but the first one */
+      .replaceWith($.contains(this.$instance[0], $content[0]) ? '' : $content)
+      
+      this.$content = $content.addClass(this.namespace+'-inner')
+      
+      return this
+    },
 
-/* we need a special class for the iframe */
-this.$instance.toggleClass(this.namespace+'-iframe', $content.is('iframe'));
+    /* opens the lightbox. "this" contains $instance with the lightbox, and with the config.
+    Returns a promise that is resolved after is successfully opened. */
+    open: function(event) {
+      let self = this
+      self.$instance.hide().appendTo(self.root)
+      if((!event || !event.isDefaultPrevented())
+      && self.beforeOpen(event) !== false) {
+      
+      if(event){
+      event.preventDefault();
+      }
+      var $content = self.getContent();
+      
+      if($content) {
+      opened.push(self);
+      
+      toggleGlobalEvents(true);
+      
+      self.$instance.fadeIn(self.openSpeed);
+      self.beforeContent(event);
+      
+      /* Set content and show */
+      return $.when($content)
+      .always(function($openendContent){
+      if($openendContent) {
+      self.setContent($openendContent);
+      self.afterContent(event);
+      }
+      })
+      .then(self.$instance.promise())
+      /* Call afterOpen after fadeIn is done */
+      .done(function(){ self.afterOpen(event); });
+      }
+      }
+      self.$instance.detach();
+      return $.Deferred().reject().promise()
+    },
 
-/* replace content by appending to existing one before it is removed
-this insures that featherlight-inner remain at the same relative
-position to any other items added to featherlight-content */
-this.$instance.find('.'+this.namespace+'-inner')
-.not($content)                /* excluded new content, important if persisted */
-.slice(1).remove().end()      /* In the unexpected event where there are many inner elements, remove all but the first one */
-.replaceWith($.contains(this.$instance[0], $content[0]) ? '' : $content);
+    /* closes the lightbox. "this" contains $instance with the lightbox, and with the config
+    returns a promise, resolved after the lightbox is successfully closed. */
+    close: function(event){
+      var self = this,
+      deferred = $.Deferred();
+      
+      if(self.beforeClose(event) === false) {
+      deferred.reject();
+      } else {
+      
+      if (0 === pruneOpened(self).length) {
+      toggleGlobalEvents(false);
+      }
+      
+      self.$instance.fadeOut(self.closeSpeed,function(){
+      self.$instance.detach();
+      self.afterClose(event);
+      deferred.resolve();
+      });
+      }
+      return deferred.promise();
+      },
+      
+      /* resizes the content so it fits in visible area and keeps the same aspect ratio.
+      Does nothing if either the width or the height is not specified.
+      Called automatically on window resize.
+      Override if you want different behavior. */
+      resize: function(w, h) {
+      if (w && h) {
+      /* Reset apparent image size first so container grows */
+      this.$content.css('width', '').css('height', '');
+      /* Calculate the worst ratio so that dimensions fit */
+      /* Note: -1 to avoid rounding errors */
+      var ratio = Math.max(
+      w  / (this.$content.parent().width()-1),
+      h / (this.$content.parent().height()-1));
+      /* Resize content */
+      if (ratio > 1) {
+      ratio = h / Math.floor(h / ratio); /* Round ratio down so height calc works */
+      this.$content.css('width', '' + w / ratio + 'px').css('height', '' + h / ratio + 'px');
+      }
+      }
+    },
 
-this.$content = $content.addClass(this.namespace+'-inner');
-
-return this;
-},
-
-/* opens the lightbox. "this" contains $instance with the lightbox, and with the config.
-Returns a promise that is resolved after is successfully opened. */
-open: function(event){
-var self = this;
-self.$instance.hide().appendTo(self.root);
-if((!event || !event.isDefaultPrevented())
-&& self.beforeOpen(event) !== false) {
-
-if(event){
-event.preventDefault();
-}
-var $content = self.getContent();
-
-if($content) {
-opened.push(self);
-
-toggleGlobalEvents(true);
-
-self.$instance.fadeIn(self.openSpeed);
-self.beforeContent(event);
-
-/* Set content and show */
-return $.when($content)
-.always(function($openendContent){
-if($openendContent) {
-self.setContent($openendContent);
-self.afterContent(event);
-}
-})
-.then(self.$instance.promise())
-/* Call afterOpen after fadeIn is done */
-.done(function(){ self.afterOpen(event); });
-}
-}
-self.$instance.detach();
-return $.Deferred().reject().promise();
-},
-
-/* closes the lightbox. "this" contains $instance with the lightbox, and with the config
-returns a promise, resolved after the lightbox is successfully closed. */
-close: function(event){
-var self = this,
-deferred = $.Deferred();
-
-if(self.beforeClose(event) === false) {
-deferred.reject();
-} else {
-
-if (0 === pruneOpened(self).length) {
-toggleGlobalEvents(false);
-}
-
-self.$instance.fadeOut(self.closeSpeed,function(){
-self.$instance.detach();
-self.afterClose(event);
-deferred.resolve();
-});
-}
-return deferred.promise();
-},
-
-/* resizes the content so it fits in visible area and keeps the same aspect ratio.
-Does nothing if either the width or the height is not specified.
-Called automatically on window resize.
-Override if you want different behavior. */
-resize: function(w, h) {
-if (w && h) {
-/* Reset apparent image size first so container grows */
-this.$content.css('width', '').css('height', '');
-/* Calculate the worst ratio so that dimensions fit */
-/* Note: -1 to avoid rounding errors */
-var ratio = Math.max(
-w  / (this.$content.parent().width()-1),
-h / (this.$content.parent().height()-1));
-/* Resize content */
-if (ratio > 1) {
-ratio = h / Math.floor(h / ratio); /* Round ratio down so height calc works */
-this.$content.css('width', '' + w / ratio + 'px').css('height', '' + h / ratio + 'px');
-}
-}
-},
-
-/* Utility function to chain callbacks
-[Warning: guru-level]
-Used be extensions that want to let users specify callbacks but
-also need themselves to use the callbacks.
-The argument 'chain' has callback names as keys and function(super, event)
-as values. That function is meant to call `super` at some point.
-*/
-chainCallbacks: function(chain) {
-for (var name in chain) {
-this[name] = $.proxy(chain[name], this, $.proxy(this[name], this));
-}
-}
-};
+    /* Utility function to chain callbacks
+    [Warning: guru-level]
+    Used be extensions that want to let users specify callbacks but
+    also need themselves to use the callbacks.
+    The argument 'chain' has callback names as keys and function(super, event)
+    as values. That function is meant to call `super` at some point.
+    */
+    chainCallbacks: function(chain) {
+      for (var name in chain) {
+        this[name] = $.proxy(chain[name], this, $.proxy(this[name], this))
+      }
+    }
+  }
 
 $.extend(FeatherBox, {
 id: 0,                                    /* Used to id single featherlight instances */
