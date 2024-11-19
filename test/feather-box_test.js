@@ -19,17 +19,17 @@ let stubAjaxLoad = function(content) {
 (function($) {
   let $htmlFixtures = null
 
-  var resetFixtures = function() {
+  let resetFixtures = function() {
     if (!$htmlFixtures) $htmlFixtures = $('#fixtures').detach()
     $('body >:not(#mocha)').remove()
     $('body').append($htmlFixtures.clone(true))
   }
 
-  var triggerKeyCode = function(keyCode) {
+  let triggerKeyCode = function(keyCode) {
     $(window).trigger($.Event("keyup", { keyCode: keyCode }))
   }
 
-  var triggerEscape = function() {
+  let triggerEscape = function() {
     triggerKeyCode(27)
   }
 
