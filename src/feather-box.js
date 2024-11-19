@@ -678,16 +678,16 @@ this.onResize(event);
 return r;
 }
 }
-});
+})
 
-$.featherlight = FeatherBox;
+  $.featherBox = FeatherBox
 
-/* bind jQuery elements to trigger featherlight */
-$.fn.featherlight = function($content, config) {
-FeatherBox.attach(this, $content, config);
-return this;
-};
+  /* bind jQuery elements to trigger feather-box */
+  $.fn.featherBox = function(boxContents, options) {
+    FeatherBox.attach(this, boxContents, options)
+    return this
+  }
 
-/* bind featherlight on ready if config autoBind is set */
-$(document).ready(function(){ FeatherBox._onReady(); });
-});
+  /* bind feather-box on ready if config autoBind is set */
+  $(document).ready(function(){ FeatherBox._onReady() })
+})
