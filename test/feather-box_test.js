@@ -142,7 +142,7 @@ let stubAjaxLoad = function(content) {
         /* even if savagely removed */
         $.featherlight('<p class="testing">This is a test<p>')
         $('.feather-box').remove()
-        expect($.featherlight.current()).to.be.null
+        expect($.featherBox.current()).to.be.null
       })
 
       it('returns the featherBox object of the last currently opened dialog', function() {
