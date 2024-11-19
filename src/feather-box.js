@@ -233,63 +233,63 @@
     },
 
 
-/* this method prepares the content and converts it into a jQuery object or a promise */
-getContent: function(){
-if(this.persist !== false && this.$content) {
-return this.$content;
-}
-var self = this,
-filters = this.constructor.contentFilters,
-readTargetAttr = function(name){ return self.$currentTarget && self.$currentTarget.attr(name); },
-targetValue = readTargetAttr(self.targetAttr),
-data = self.target || targetValue || '';
-
-/* Find which filter applies */
-var filter = filters[self.type]; /* check explicit type like {type: 'image'} */
-
-/* check explicit type like data-featherlight="image" */
-if(!filter && data in filters) {
-filter = filters[data];
-data = self.target && targetValue;
-}
-data = data || readTargetAttr('href') || '';
-
-/* check explicity type & content like {image: 'photo.jpg'} */
-if (!filter) {
-for(var filterName in filters) {
-if(self[filterName]) {
-filter = filters[filterName];
-data = self[filterName];
-}
-}
-}
-
-/* otherwise it's implicit, run checks */
-if (!filter) {
-var target = data
-data = null
-
-$.each(self.contentFilters, function() {
-filter = filters[this]
-if (filter.test)  {
-data = filter.test(target)
-}
-
-if (!data && filter.regex && target.match && target.match(filter.regex)) {
-data = target
-}
-
-return !data
-})
-
-if (!data) {
-if('console' in window){ window.console.error('FeatherBox: no content filter found ' + (target ? ' for "' + target + '"' : ' (no target specified)')); }
-return false;
-}
-}
-/* Process it */
-return filter.process.call(self, data);
-},
+    /* this method prepares the content and converts it into a jQuery object or a promise */
+    getContent: function() {
+      if (this.persist !== false && this.$content) {
+      return this.$content;
+      }
+      var self = this,
+      filters = this.constructor.contentFilters,
+      readTargetAttr = function(name){ return self.$currentTarget && self.$currentTarget.attr(name); },
+      targetValue = readTargetAttr(self.targetAttr),
+      data = self.target || targetValue || '';
+      
+      /* Find which filter applies */
+      var filter = filters[self.type]; /* check explicit type like {type: 'image'} */
+      
+      /* check explicit type like data-featherlight="image" */
+      if(!filter && data in filters) {
+      filter = filters[data];
+      data = self.target && targetValue;
+      }
+      data = data || readTargetAttr('href') || '';
+      
+      /* check explicity type & content like {image: 'photo.jpg'} */
+      if (!filter) {
+      for(var filterName in filters) {
+      if(self[filterName]) {
+      filter = filters[filterName];
+      data = self[filterName];
+      }
+      }
+      }
+      
+      /* otherwise it's implicit, run checks */
+      if (!filter) {
+      var target = data
+      data = null
+      
+      $.each(self.contentFilters, function() {
+      filter = filters[this]
+      if (filter.test)  {
+      data = filter.test(target)
+      }
+      
+      if (!data && filter.regex && target.match && target.match(filter.regex)) {
+      data = target
+      }
+      
+      return !data
+      })
+      
+      if (!data) {
+      if('console' in window){ window.console.error('FeatherBox: no content filter found ' + (target ? ' for "' + target + '"' : ' (no target specified)')); }
+      return false;
+      }
+      }
+      /* Process it */
+      return filter.process.call(self, data)
+    },
 
 /* sets the content of $instance to $content */
 setContent: function($content){
