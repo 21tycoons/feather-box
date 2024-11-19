@@ -50,15 +50,18 @@
   extending FeatherBox. The chainCallbacks is used since we don't have access to
   CoffeeScript's `super`. */
 
-  function FeatherBox(boxContents, config) {
+  function FeatherBox(boxContents, options) {
     if (this instanceof FeatherBox) {  /* called with new FeatherBox() */
       this.id = FeatherBox.id++
-      this.install(boxContents, config)
+      this.install(boxContents, options)
       this.chainCallbacks(FeatherBox._callbackChain)
-    } else {
-      const featherBox = new FeatherBox(boxContents, config)
+    }
+
+    if (!this instanceof FeatherBox) {
+      const featherBox = new FeatherBox(boxContents, options)
+
       featherBox.open()
-  
+
       return featherBox
     }
   }
