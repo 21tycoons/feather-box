@@ -136,11 +136,11 @@ let stubAjaxLoad = function(content) {
       it('returns null if no dialogbox is currently opened', function() {
         expect($.featherBox.current()).to.be.null
         /* even if opened and then closed */
-        $.featherlight('<p class="testing">This is a test<p>')
+        $.featherBox('<p class="testing">This is a test<p>')
         $('.feather-box').click()
         expect($.featherBox.current()).to.be.null
         /* even if savagely removed */
-        $.featherlight('<p class="testing">This is a test<p>')
+        $.featherBox('<p class="testing">This is a test<p>')
         $('.feather-box').remove()
         expect($.featherBox.current()).to.be.null
       })
