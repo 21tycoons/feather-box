@@ -132,7 +132,7 @@ let stubAjaxLoad = function(content) {
     })
 
 
-    describe('jQuery.featherlight.current', function() {
+    describe('jQuery.featherBox.current', function() {
       it('returns null if no dialogbox is currently opened', function() {
         expect($.featherBox.current()).to.be.null
         /* even if opened and then closed */
@@ -145,7 +145,7 @@ let stubAjaxLoad = function(content) {
         expect($.featherlight.current()).to.be.null
       })
 
-      it('returns the featherlight object of the last currently opened dialog', function() {
+      it('returns the featherBox object of the last currently opened dialog', function() {
         let first = $.featherBox('<p>First<p>')
         expect($.featherBox.current()).to.equal(first)
 
