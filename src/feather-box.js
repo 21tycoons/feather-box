@@ -51,13 +51,15 @@
   CoffeeScript's `super`. */
 
   function FeatherBox(boxContents, options) {
-    if (this instanceof FeatherBox) {  /* called with new FeatherBox() */
+    let instanceOfClass = this instanceof FeatherBox /* called with new FeatherBox() */
+
+    if (instanceOfClass) {
       this.id = FeatherBox.id++
       this.install(boxContents, options)
       this.chainCallbacks(FeatherBox._callbackChain)
     }
 
-    if (!this instanceof FeatherBox) {
+    if (!instanceOfClass) {
       const featherBox = new FeatherBox(boxContents, options)
 
       featherBox.open()
