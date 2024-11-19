@@ -132,30 +132,30 @@ let stubAjaxLoad = function(content) {
     })
 
 
-describe('jQuery.featherlight.current', function() {
-it('returns null if no dialogbox is currently opened', function() {
-expect($.featherlight.current()).to.be.null
-/* even if opened and then closed */
-$.featherlight('<p class="testing">This is a test<p>')
-$('.featherlight').click()
-expect($.featherlight.current()).to.be.null
-/* even if savagely removed */
-$.featherlight('<p class="testing">This is a test<p>')
-$('.featherlight').remove()
-expect($.featherlight.current()).to.be.null
-})
+    describe('jQuery.featherlight.current', function() {
+      it('returns null if no dialogbox is currently opened', function() {
+        expect($.featherBox.current()).to.be.null
+        /* even if opened and then closed */
+        $.featherlight('<p class="testing">This is a test<p>')
+        $('.feather-box').click()
+        expect($.featherBox.current()).to.be.null
+        /* even if savagely removed */
+        $.featherlight('<p class="testing">This is a test<p>')
+        $('.feather-box').remove()
+        expect($.featherlight.current()).to.be.null
+      })
 
-it('returns the featherlight object of the last currently opened dialog', function() {
-var first = $.featherlight('<p>First<p>')
-expect($.featherlight.current()).to.equal(first)
+      it('returns the featherlight object of the last currently opened dialog', function() {
+        let first = $.featherBox('<p>First<p>')
+        expect($.featherBox.current()).to.equal(first)
 
-var second = $.featherlight('<p>Inner<p>', { namespace: 'different_namespace' })
-expect($.featherlight.current()).to.equal(second)
+        let second = $.featherBox('<p>Inner<p>', { namespace: 'different_namespace' })
+        expect($.featherBox.current()).to.equal(second)
 
-$('.different_namespace').click()
-expect($.featherlight.current()).to.equal(first)
-})
-})
+        $('.different_namespace').click()
+        expect($.featherBox.current()).to.equal(first)
+      })
+    })
 
 describe('jQuery.featherlight.opened', function() {
 it('returns [] ]if no dialogbox is currently opened', function() {
