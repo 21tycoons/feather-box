@@ -407,17 +407,18 @@
     }
   }
 
-$.extend(FeatherBox, {
-id: 0,                                    /* Used to id single featherlight instances */
-autoBind:       '[data-featherlight]',    /* Will automatically bind elements matching this selector. Clear or set before onReady */
-defaults:       FeatherBox.prototype,   /* You can access and override all defaults using $.featherlight.defaults, which is just a synonym for $.featherlight.prototype */
-/* Contains the logic to determine content */
-contentFilters: {
-jquery: {
-regex: /^[#.]\w/,         /* Anything that starts with a class name or identifiers */
-test: function(elem)    { return elem instanceof $ && elem; },
-process: function(elem) { return this.persist !== false ? $(elem) : $(elem).clone(true); }
-},
+  $.extend(FeatherBox, {
+    id: 0,                          /* Used to id single featherlight instances */
+    autoBind: '[data-feather-box]', /* Will automatically bind elements matching this selector. Clear or set before onReady */
+    defaults: FeatherBox.prototype, /* You can access and override all defaults using $.featherBox.defaults, which is just a synonym for $.featherBox.prototype */
+
+    /* Contains the logic to determine content */
+    contentFilters: {
+      jquery: {
+        regex: /^[#.]\w/,         /* Anything that starts with a class name or identifiers */
+        test: function(elem)    { return elem instanceof $ && elem; },
+        process: function(elem) { return this.persist !== false ? $(elem) : $(elem).clone(true); }
+      },
 image: {
 regex: /\.(png|jpg|jpeg|gif|tiff?|bmp|svg|webp)(\?\S*)?$/i,
 process: function(url)  {
