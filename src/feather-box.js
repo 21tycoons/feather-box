@@ -55,7 +55,9 @@
 
     if (instanceOfClass) {
       this.id = FeatherBox.id++
+
       this.install(boxContents, options)
+
       this.chainCallbacks(FeatherBox._callbackChain)
     }
 
