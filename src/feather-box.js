@@ -408,7 +408,7 @@
   }
 
   $.extend(FeatherBox, {
-    id: 0,                          /* Used to id single featherlight instances */
+    id: 0,                          /* Used to id single feather-box instances */
     autoBind: '[data-feather-box]', /* Will automatically bind elements matching this selector. Clear or set before onReady */
     defaults: FeatherBox.prototype, /* You can access and override all defaults using $.featherBox.defaults, which is just a synonym for $.featherBox.prototype */
 
