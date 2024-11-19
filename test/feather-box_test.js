@@ -82,51 +82,55 @@ let stubAjaxLoad = function(content) {
       ])
     })
 
-it ('does not move content that was already placed in the featherlight by content-filters', function() {
-$.featherlight.contentFilters.advancedExample = {
-process: function() {
-return $('<p>Hello</p>').appendTo(this.$instance)
-}
-}
+    it ('does not move content that was already placed in the feather-box by content-filters', function() {
+      $.featherBox.contentFilters.advancedExample = {
+        process: function() {
+          return $('<p>Hello</p>').appendTo(this.$instance)
+        }
+      }
 
-$.featherlight({
-advancedExample: 'dummy'
-})
+      $.featherBox({
+        advancedExample: 'dummy'
+      })
 
-expect($('.featherlight > p').length).to.equal(1)
-})
+      expect($('.feather-box > p').length).to.equal(1)
+    })
 
-describe('jQuery#featherlight', function() {
-it('is chainable', function() {
-// Not a bad test to run on collection methods.
-var $all_links = $('a')
-expect($all_links.featherlight()).to.equal($all_links)
-})
 
-it("won't open a dialog if the event is already prevented", function() {
-$('#plain-photo-link').on('click', function(event) { event.preventDefault() }).featherlight().click()
-expect($.featherlight.current()).to.be.null
-})
-})
+    describe('jQuery#feather-box', function() {
+      it('is chainable', function() {
+        // Not a bad test to run on collection methods.
+        let $all_links = $('a')
+        expect($all_links.featherBox()).to.equal($all_links)
+      })
 
-describe('jQuery.featherlight', function() {
-it('opens a dialog box', function() {
-$.featherlight('<p class="testing">This is a test<p>')
-expect($('.featherlight p.testing')).to.be.visible
-})
-})
+      it("won't open a dialog if the event is already prevented", function() {
+        $('#plain-photo-link').on('click', function(event) { event.preventDefault() }).featherBox().click()
+        expect($.featherBox.current()).to.be.null
+      })
+    })
 
-describe('jQuery.featherlight#open', function() {
-it('returns a promise', function(done) {
-var fl = new $.featherlight('<p class="testing">This is a test<p>')
-expect($.featherlight.current()).to.be.null
-var evt = $.Event('dummy')
-evt.preventDefault()
-expect(fl.open(evt).state()).to.equal('rejected')
-expect($.featherlight.current()).to.be.null
-fl.open().then(function(){ done() })
-})
-})
+
+    describe('jQuery.featherBox', function() {
+      it('opens a dialog box', function() {
+        $.featherBox('<p class="testing">This is a test<p>')
+        expect($('.feather-box p.testing')).to.be.visible
+      })
+    })
+
+
+    describe('jQuery.featherBox#open', function() {
+      it('returns a promise', function(done) {
+        const featherBox = new $.featherBox('<p class="testing">This is a test<p>')
+        expect($.featherBox.current()).to.be.null
+        let evt = $.Event('dummy')
+        evt.preventDefault()
+        expect(featherBox.open(evt).state()).to.equal('rejected')
+        expect($.featherBox.current()).to.be.null
+        featherBox.open().then(function(){ done() })
+      })
+    })
+
 
 describe('jQuery.featherlight.current', function() {
 it('returns null if no dialogbox is currently opened', function() {
